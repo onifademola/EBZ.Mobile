@@ -1,0 +1,204 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+<ItemGroup>
+<PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+<PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfSunburstChart" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfMaskedEdit" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.46" />
+<PackageReference Include="Syncfusion.Xamarin.SfBarcode" Version="17.2.0.46" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ItemGroup>
+
+<ItemGroup>
+  <Reference Include="ZXing.Net.Mobile.Core">
+    <HintPath>..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\ZXing.Net.Mobile.Core.dll</HintPath>
+  </Reference>
+  <Reference Include="ZXing.Net.Mobile.Forms">
+    <HintPath>..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\ZXing.Net.Mobile.Forms.dll</HintPath>
+  </Reference>
+  <Reference Include="zxing.portable">
+    <HintPath>..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\zxing.portable.dll</HintPath>
+  </Reference>
+  <Reference Include="ZXingNetMobile">
+    <HintPath>..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\ZXingNetMobile.dll</HintPath>
+  </Reference>
+</ItemGroup>
+
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SimpleEmailEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SimpleLoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
