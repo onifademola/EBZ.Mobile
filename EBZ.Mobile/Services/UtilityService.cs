@@ -8,13 +8,15 @@ namespace EBZ.Mobile.Services
         public bool IsTokenExpired()
         {
             var tokenDate = _settingsService.ValidToSetting;
-            if (tokenDate.Length > 0)
+            if (tokenDate.Equals(string.Empty))
             {
-                DateTime tokenEpiryDate = Convert.ToDateTime("01/09/2018");
-                if (DateTime.Now > tokenEpiryDate)
-                    return true;
+                DateTime tempDate = DateTime.Today.AddMonths(9);
+                DateTime tokenEpiryDate = Convert.ToDateTime(tempDate);
+                if (DateTime.Now < tokenEpiryDate)
+                    return false;
+                return true;
             }
-            return false;
+            return true;
         }
 
         public bool IsAuthenticated()

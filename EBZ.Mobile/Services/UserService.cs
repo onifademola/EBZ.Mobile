@@ -26,10 +26,11 @@ namespace EBZ.Mobile.Services
             if (tokenDate.Length > 0)
             {
                 DateTime tokenEpiryDate = Convert.ToDateTime(tokenDate);
-                if (DateTime.Now > tokenEpiryDate)
-                    return true;
+                if (DateTime.Now < tokenEpiryDate)
+                    return false;
+                return true;
             }
-            return false;
+            return true;
         }
 
         public string LoggedInUser()
