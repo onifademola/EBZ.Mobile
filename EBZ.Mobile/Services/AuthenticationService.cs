@@ -1,26 +1,27 @@
 ﻿using EBZ.Mobile.Models;
+using EBZ.Mobile.ServicesInterface;
 using System.Threading.Tasks;
 
 namespace EBZ.Mobile.Services
 {
-    public class AuthenticationService
+    public class AuthenticationService : IAuthenticationService
     {
-        //private readonly IGenericService _genericRepository;
-        //private readonly ISettingsService _settingsService;
-        //public AuthenticationService(IGenericService genericRepository, ISettingsService settingsService)
-        //{
-        //    _settingsService = settingsService;
-        //    _genericRepository = genericRepository;
-
-        //}
-
-        GenericService _genericRepository = new GenericService();
-        SettingsService _settingsService = new SettingsService();
-
-        public AuthenticationService()
+        private readonly IGenericService _genericRepository;
+        private readonly ISettingsService _settingsService;
+        public AuthenticationService(IGenericService genericRepository, ISettingsService settingsService)
         {
+            _settingsService = settingsService;
+            _genericRepository = genericRepository;
 
         }
+
+        //GenericService _genericRepository = new GenericService();
+        //SettingsService _settingsService = new SettingsService();
+
+        //public AuthenticationService()
+        //{
+
+        //}
 
         public async Task<AuthenticationResponse> Register(string email, string password, string phone, string birthDay, string birthMonth, int categoryId)
         {

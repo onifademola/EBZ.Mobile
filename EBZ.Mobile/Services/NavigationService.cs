@@ -1,187 +1,161 @@
-﻿//using EBZ.Mobile.AppStart;
-//using EBZ.Mobile.ServicesInterface;
-//using EBZ.Mobile.ViewModels;
-//using EBZ.Mobile.Views;
-//using System;
-//using System.Collections.Generic;
-//using System.Text;
-//using System.Threading.Tasks;
-//using Xamarin.Forms;
+﻿using EBZ.Mobile.ServicesInterface;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
-//namespace EBZ.Mobile.Services
-//{
-//    public class NavigationService : INavigationService
-//    {
-//        private readonly IAuthenticationService _authenticationService;
-//        private readonly Dictionary<Type, Type> _mappings;
+namespace EBZ.Mobile.Services
+{
+    public class NavigationService : INavigationService
+    {
+        private readonly object _sync = new object();
+        private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
+        private readonly Stack<NavigationPage> _navigationPageStack =
+            new Stack<NavigationPage>();
+        private NavigationPage CurrentNavigationPage => _navigationPageStack.Peek();
 
-//        protected Application CurrentApplication => Application.Current;
+        public void Configure(string pageKey, Type pageType)
+        {
+            lock (_sync)
+            {
+                if (_pagesByKey.ContainsKey(pageKey))
+                {
+                    _pagesByKey[pageKey] = pageType;
+                }
+                else
+                {
+                    _pagesByKey.Add(pageKey, pageType);
+                }
+            }
+        }
 
-//        public NavigationService(IAuthenticationService authenticationService)
-//        {
-//            _authenticationService = authenticationService;
-//            _mappings = new Dictionary<Type, Type>();
+        public Page SetRootPage(string rootPageKey)
+        {
+            var rootPage = GetPage(rootPageKey);
+            _navigationPageStack.Clear();
+            var mainPage = new NavigationPage(rootPage);
+            _navigationPageStack.Push(mainPage);
+            return mainPage;
+        }
 
-//            CreatePageViewModelMappings();
-//        }
+        public string CurrentPageKey
+        {
+            get
+            {
+                lock (_sync)
+                {
+                    if (CurrentNavigationPage?.CurrentPage == null)
+                    {
+                        return null;
+                    }
 
-//        public async Task InitializeAsync()
-//        {
-//            if (_authenticationService.IsUserAuthenticated())
-//            {
-//                await NavigateToAsync<MainViewModel>();
-//            }
-//            else
-//            {
-//                await NavigateToAsync<LoginViewModel>();
-//            }
-//        }
+                    var pageType = CurrentNavigationPage.CurrentPage.GetType();
 
-//        public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
-//        {
-//            return InternalNavigateToAsync(typeof(TViewModel), null);
-//        }
+                    return _pagesByKey.ContainsValue(pageType)
+                        ? _pagesByKey.First(p => p.Value == pageType).Key
+                        : null;
+                }
+            }
+        }
 
-//        public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
-//        {
-//            return InternalNavigateToAsync(typeof(TViewModel), parameter);
-//        }
+        public async Task GoBack()
+        {
+            var navigationStack = CurrentNavigationPage.Navigation;
+            if (navigationStack.NavigationStack.Count > 1)
+            {
+                await CurrentNavigationPage.PopAsync();
+                return;
+            }
 
-//        public Task NavigateToAsync(Type viewModelType)
-//        {
-//            return InternalNavigateToAsync(viewModelType, null);
-//        }
+            if (_navigationPageStack.Count > 1)
+            {
+                _navigationPageStack.Pop();
+                await CurrentNavigationPage.Navigation.PopModalAsync();
+                return;
+            }
 
-//        public async Task ClearBackStack()
-//        {
-//            await CurrentApplication.MainPage.Navigation.PopToRootAsync();
-//        }
+            await CurrentNavigationPage.PopAsync();
+        }
 
-//        public Task NavigateToAsync(Type viewModelType, object parameter)
-//        {
-//            return InternalNavigateToAsync(viewModelType, parameter);
-//        }
+        public async Task NavigateModalAsync(string pageKey, bool animated = true)
+        {
+            await NavigateModalAsync(pageKey, null, animated);
+        }
 
-//        public async Task NavigateBackAsync()
-//        {
-//            if (CurrentApplication.MainPage is MainView mainPage)
-//            {
-//                await mainPage.Navigation.PopAsync();
-//            }
-//            else if (CurrentApplication.MainPage != null)
-//            {
-//                await CurrentApplication.MainPage.Navigation.PopAsync();
-//            }
-//        }
+        public async Task NavigateModalAsync(string pageKey, object parameter, bool animated = true)
+        {
+            var page = GetPage(pageKey, parameter);
+            NavigationPage.SetHasNavigationBar(page, false);
+            var modalNavigationPage = new NavigationPage(page);
+            await CurrentNavigationPage.Navigation.PushModalAsync(modalNavigationPage, animated);
+            _navigationPageStack.Push(modalNavigationPage);
+        }
 
-//        public virtual Task RemoveLastFromBackStackAsync()
-//        {
-//            if (CurrentApplication.MainPage is MainView mainPage)
-//            {
-//                mainPage.Navigation.RemovePage(
-//                    mainPage.Navigation.NavigationStack[mainPage.Navigation.NavigationStack.Count - 2]);
-//            }
+        public async Task NavigateAsync(string pageKey, bool animated = true)
+        {
+            await NavigateAsync(pageKey, null, animated);
+        }
 
-//            return Task.FromResult(true);
-//        }
+        public async Task NavigateAsync(string pageKey, object parameter, bool animated = true)
+        {
+            var page = GetPage(pageKey, parameter);
+            await CurrentNavigationPage.Navigation.PushAsync(page, animated);
+        }
 
-//        public async Task PopToRootAsync()
-//        {
-//            if (CurrentApplication.MainPage is MainView mainPage)
-//            {
-//                await mainPage.Navigation.PopToRootAsync();
-//            }
-//        }
+        private Page GetPage(string pageKey, object parameter = null)
+        {
 
-//        protected virtual async Task InternalNavigateToAsync(Type viewModelType, object parameter)
-//        {
-//            //Page page = CreateAndBindPage(viewModelType, parameter);
+            lock (_sync)
+            {
+                if (!_pagesByKey.ContainsKey(pageKey))
+                {
+                    throw new ArgumentException(
+                        $"No such page: {pageKey}. Did you forget to call NavigationService.Configure?");
+                }
 
-//            //if (page is MainView)// || page is RegistrationView)
-//            //{
-//            //    CurrentApplication.MainPage = page;
-//            //}
-//            //else if (page is LoginView)
-//            //{
-//            //    CurrentApplication.MainPage = page;
-//            //}
-//            //else if (CurrentApplication.MainPage is MainView)
-//            //{
-//            //    var mainPage = CurrentApplication.MainPage as MainView;
+                var type = _pagesByKey[pageKey];
+                ConstructorInfo constructor;
+                object[] parameters;
 
-//            //    if (mainPage.Navigation is BaseNavigationPage navigationPage)
-//            //    {
-//            //        var currentPage = navigationPage.CurrentPage;
+                if (parameter == null)
+                {
+                    constructor = type.GetTypeInfo()
+                        .DeclaredConstructors
+                        .FirstOrDefault(c => !c.GetParameters().Any());
 
-//            //        if (currentPage.GetType() != page.GetType())
-//            //        {
-//            //            await navigationPage.PushAsync(page);
-//            //        }
-//            //    }
-//            //    else
-//            //    {
-//            //        navigationPage = new BaseNavigationPage(page);
-//            //        mainPage.Detail = navigationPage;
-//            //    }
+                    parameters = new object[]
+                    {
+                    };
+                }
+                else
+                {
+                    constructor = type.GetTypeInfo()
+                        .DeclaredConstructors
+                        .FirstOrDefault(
+                            c =>
+                            {
+                                var p = c.GetParameters();
+                                return p.Length == 1
+                                       && p[0].ParameterType == parameter.GetType();
+                            });
 
-//            //    mainPage.IsPresented = false;
-//            //}
-//            //else
-//            //{
-//            //    var navigationPage = CurrentApplication.MainPage as BaseNavigationPage;
+                    parameters = new[]
+                    {
+                    parameter
+                };
+                }
 
-//            //    if (navigationPage != null)
-//            //    {
-//            //        await navigationPage.PushAsync(page);
-//            //    }
-//            //    else
-//            //    {
-//            //        CurrentApplication.MainPage = new BaseNavigationPage(page);
-//            //    }
-//            //}
+                if (constructor == null)
+                {
+                    throw new InvalidOperationException(
+                        "No suitable constructor found for page " + pageKey);
+                }
 
-//            //await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
-//        }
-
-//        protected Type GetPageTypeForViewModel(Type viewModelType)
-//        {
-//            if (!_mappings.ContainsKey(viewModelType))
-//            {
-//                throw new KeyNotFoundException($"No map for ${viewModelType} was found on navigation mappings");
-//            }
-
-//            return _mappings[viewModelType];
-//        }
-
-//        protected Page CreateAndBindPage(Type viewModelType, object parameter)
-//        {
-//            Type pageType = GetPageTypeForViewModel(viewModelType);
-
-//            if (pageType == null)
-//            {
-//                throw new Exception($"Mapping type for {viewModelType} is not a page");
-//            }
-
-//            Page page = Activator.CreateInstance(pageType) as Page;
-//            ViewModelBase viewModel = AppContainer.Resolve(viewModelType) as ViewModelBase;
-//            page.BindingContext = viewModel;
-
-//            return page;
-//        }
-
-//        private void CreatePageViewModelMappings()
-//        {
-
-//            //_mappings.Add(typeof(LoginViewModel), typeof(LoginView));
-//            _mappings.Add(typeof(MainViewModel), typeof(MainView));
-//            //_mappings.Add(typeof(MenuViewModel), typeof(MenuView));
-//            //_mappings.Add(typeof(HomeViewModel), typeof(HomeView));
-//            //_mappings.Add(typeof(CheckoutViewModel), typeof(CheckoutView));
-//            //_mappings.Add(typeof(ContactViewModel), typeof(ContactView));
-//            //_mappings.Add(typeof(PieCatalogViewModel), typeof(PieCatalogView));
-//            //_mappings.Add(typeof(PieDetailViewModel), typeof(PieDetailView));
-//            //_mappings.Add(typeof(RegistrationViewModel), typeof(RegistrationView));
-//            //_mappings.Add(typeof(ShoppingCartViewModel), typeof(ShoppingCartView));
-//        }
-//    }
-//}
+                var page = constructor.Invoke(parameters) as Page;
+                return page;
+            }
+        }
+    }
+}

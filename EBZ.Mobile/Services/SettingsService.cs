@@ -1,9 +1,10 @@
-﻿using Plugin.Settings;
+﻿using EBZ.Mobile.ServicesInterface;
+using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
 namespace EBZ.Mobile.Services
 {
-    public class SettingsService
+    public class SettingsService : ISettingsService
     {
         private readonly ISettings _settings;
         private const string UserName = "UserName";

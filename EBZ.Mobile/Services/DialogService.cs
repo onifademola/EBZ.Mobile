@@ -1,9 +1,10 @@
 ﻿using Acr.UserDialogs;
+using EBZ.Mobile.ServicesInterface;
 using System.Threading.Tasks;
 
 namespace EBZ.Mobile.Services
 {
-    public class DialogService
+    public class DialogService : IDialogService
     {
         public Task ShowDialog(string message, string title, string buttonLabel)
         {

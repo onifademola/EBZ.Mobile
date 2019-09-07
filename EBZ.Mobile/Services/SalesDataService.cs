@@ -1,15 +1,17 @@
 ﻿using EBZ.Mobile.Models;
+using EBZ.Mobile.ServicesInterface;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EBZ.Mobile.Services
 {
-    public class SalesDataService
+    public class SalesDataService : ISalesDataService
     {
-        GenericService _genericRepository = new GenericService();
-        public SalesDataService()
-        { 
+        private readonly GenericService _genericRepository;
+        public SalesDataService(GenericService genericRepository)
+        {
+            _genericRepository = genericRepository;
         }
 
         public async Task<String> ValidateSalesPin(string pin)

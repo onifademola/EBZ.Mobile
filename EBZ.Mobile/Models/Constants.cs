@@ -1,10 +1,11 @@
-﻿using Xamarin.Forms;
+﻿using EBZ.Mobile.Services;
+using EBZ.Mobile.ServicesInterface;
+using Xamarin.Forms;
 
 namespace EBZ.Mobile.Models
 {
     public class Constants
     {
-        //public static bool IsDev = true;
         //public const string BaseApiUrl = "http://192.168.43.176:45455/api/v1"; http://10.123.167.84:45455/ http://eaglesbytz-002-site15.itempurl.com
         //public const string BaseApiUrl = "http://172.16.1.56:45455/api/v1";
         //public const string BaseApiUrl = "http://10.123.167.15:45455/api/v1";
@@ -28,12 +29,5 @@ namespace EBZ.Mobile.Models
         public const string LoginEndpoint = "/auth/login/";
         public const string ResetPasswordEndpoint = "/auth/resetpassword/";
         public const string CreateCustomerByMarketer = "/customer/create/";
-
-        //app settings
-        public static Color BackgroundColor = Color.FromRgb(58, 153, 215);
-        public static Color MainTextColor = Color.White;
-        public static int LogoIconHeight = 120;
-
-
     }
 }

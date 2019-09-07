@@ -7,6 +7,7 @@
 <ItemGroup>
 <PackageReference Include="Acr.UserDialogs" Version="7.0.4" />
 <PackageReference Include="akavache" Version="6.8.1" />
+<PackageReference Include="Autofac" Version="4.9.4" />
 <PackageReference Include="Polly" Version="7.1.1" />
 <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
 <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
@@ -170,16 +171,16 @@
 
 <ItemGroup>
   <Reference Include="ZXing.Net.Mobile.Core">
-    <HintPath>..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\ZXing.Net.Mobile.Core.dll</HintPath>
+    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXing.Net.Mobile.Core.dll</HintPath>
   </Reference>
   <Reference Include="ZXing.Net.Mobile.Forms">
-    <HintPath>..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\ZXing.Net.Mobile.Forms.dll</HintPath>
+    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXing.Net.Mobile.Forms.dll</HintPath>
   </Reference>
   <Reference Include="zxing.portable">
-    <HintPath>..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\zxing.portable.dll</HintPath>
+    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\zxing.portable.dll</HintPath>
   </Reference>
   <Reference Include="ZXingNetMobile">
-    <HintPath>..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\ZXingNetMobile.dll</HintPath>
+    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXingNetMobile.dll</HintPath>
   </Reference>
 </ItemGroup>
 

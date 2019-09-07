@@ -1,9 +1,10 @@
-﻿using Plugin.Connectivity;
+﻿using EBZ.Mobile.ServicesInterface;
+using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 
 namespace EBZ.Mobile.Services
 {
-    public class ConnectionService
+    public class ConnectionService : IConnectionService
     {
         private readonly IConnectivity _connectivity;
 

@@ -1,14 +1,16 @@
 ﻿using EBZ.Mobile.Models;
+using EBZ.Mobile.ServicesInterface;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EBZ.Mobile.Services
 {
-    public class CustomerDataService
+    public class CustomerDataService : ICustomerDataService
     {
-        GenericService _genericRepository = new GenericService();
-        public CustomerDataService()
+        private readonly GenericService _genericRepository;
+        public CustomerDataService(GenericService genericRepository)
         {
+            _genericRepository = genericRepository;
         }
 
         public async Task<List<MarketerCustomer>> GetCustomersForMarketer(string marketerEmail)

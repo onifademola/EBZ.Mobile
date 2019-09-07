@@ -1,14 +1,15 @@
-﻿using System;
+﻿using EBZ.Mobile.ServicesInterface;
+using System;
 
 namespace EBZ.Mobile.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        SettingsService _settingsService = new SettingsService();
+        private readonly SettingsService _settingsService;
 
-        public UserService()
+        public UserService(SettingsService settingsService)
         {
-
+            _settingsService = settingsService;
         }
 
         public bool IsAuthenticated()
@@ -22,10 +23,10 @@ namespace EBZ.Mobile.Services
         public bool IsTokenExpired()
         {
             var tokenDate = _settingsService.ValidToSetting;
-            if (!tokenDate.Equals(string.Empty))
+            if (tokenDate.Length > 0)
             {
                 DateTime tokenEpiryDate = Convert.ToDateTime(tokenDate);
-                if (DateTime.Now < tokenEpiryDate)
+                if (DateTime.Now > tokenEpiryDate)
                     return true;
             }
             return false;
