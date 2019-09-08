@@ -42,17 +42,17 @@ namespace EBZ.Mobile
             if (_utilityService.IsTokenExpired())
             {
                 var loginPage = ((NavigationService)ViewNavigationService).SetRootPage("SimpleLoginPage");
-                MainPage = loginPage; // new NavigationPage(new Views.Login.SimpleLoginPage());
+                MainPage = loginPage;
             }
             else if (_utilityService.IsAuthenticated())
             {
                 var mainPage = ((NavigationService)ViewNavigationService).SetRootPage("MainPage");
-                MainPage = mainPage; // new MainPage();
+                MainPage = mainPage;
             }
             else
             {
                 var loginPage = ((NavigationService)ViewNavigationService).SetRootPage("SimpleLoginPage");
-                MainPage = loginPage; // new NavigationPage(new Views.Login.SimpleLoginPage());
+                MainPage = loginPage;
             }
         }
 
@@ -61,9 +61,9 @@ namespace EBZ.Mobile
         {
             ViewNavigationService.Configure("MainPage", typeof(MainPage));
             ViewNavigationService.Configure("SimpleLoginPage", typeof(Views.Login.SimpleLoginPage));
-            //ViewNavigationService.Configure("SimpleSignUpPage", typeof(Views.Login.SimpleSignUpPage));
-            //ViewNavigationService.Configure("SimpleResetPasswordPage", typeof(Views.Login.SimpleResetPasswordPage));
-            //ViewNavigationService.Configure("SimpleForgotPasswordPage", typeof(Views.Login.SimpleForgotPasswordPage));
+            ViewNavigationService.Configure("SimpleSignUpPage", typeof(Views.Login.SimpleSignUpPage));
+            ViewNavigationService.Configure("SimpleResetPasswordPage", typeof(Views.Login.SimpleResetPasswordPage));
+            ViewNavigationService.Configure("SimpleForgotPasswordPage", typeof(Views.Login.SimpleForgotPasswordPage));
             //ViewNavigationService.Configure("MainPage", typeof(MainPage));
             //ViewNavigationService.Configure("ModalNavigationPage", typeof(Views.ModalNavigationPage));
             //ViewNavigationService.Configure("PushNavigationPage", typeof(Views.PushNavigationPage));

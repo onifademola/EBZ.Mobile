@@ -150,7 +150,8 @@ namespace EBZ.Mobile.ViewModels.Login
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            // Do something
+            var viewNAvServ = App.ViewNavigationService;
+            var mainPage = ((NavigationService)viewNAvServ).NavigateModalAsync("SimpleSignUpPage");
         }
 
         /// <summary>
@@ -163,6 +164,8 @@ namespace EBZ.Mobile.ViewModels.Login
             label.BackgroundColor = Color.FromHex("#70FFFFFF");
             await Task.Delay(100);
             label.BackgroundColor = Color.Transparent;
+            var viewNAvServ = App.ViewNavigationService;
+            var mainPage = ((NavigationService)viewNAvServ).NavigateModalAsync("SimpleForgotPasswordPage");
         }
 
         /// <summary>
