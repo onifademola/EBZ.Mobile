@@ -7,10 +7,10 @@ namespace EBZ.Mobile.Services
 {
     public class CustomerDataService : ICustomerDataService
     {
-        private readonly GenericService _genericRepository;
-        public CustomerDataService(GenericService genericRepository)
+        GenericService _genericRepository = new GenericService();
+        public CustomerDataService()
         {
-            _genericRepository = genericRepository;
+
         }
 
         public async Task<List<MarketerCustomer>> GetCustomersForMarketer(string marketerEmail)

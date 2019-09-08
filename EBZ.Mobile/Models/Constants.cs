@@ -8,8 +8,9 @@ namespace EBZ.Mobile.Models
     {
         //public const string BaseApiUrl = "http://192.168.43.176:45455/api/v1"; http://10.123.167.84:45455/ http://eaglesbytz-002-site15.itempurl.com
         //public const string BaseApiUrl = "http://172.16.1.56:45455/api/v1";
+        public const string BaseApiUrl = "http://172.16.1.104:45455/api/v1";
         //public const string BaseApiUrl = "http://10.123.167.15:45455/api/v1";
-        public const string BaseApiUrl = "http://eaglesbytz-002-site15.itempurl.com/api/v1";
+        //public const string BaseApiUrl = "http://eaglesbytz-002-site15.itempurl.com/api/v1";
         public const string GetCustomerCategories = "/customer/getcategories/";
         public const string Customers = "/customer/getcustomers";
         public const string Customer = "/customer/get/";

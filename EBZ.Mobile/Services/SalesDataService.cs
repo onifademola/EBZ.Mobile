@@ -8,10 +8,9 @@ namespace EBZ.Mobile.Services
 {
     public class SalesDataService : ISalesDataService
     {
-        private readonly GenericService _genericRepository;
-        public SalesDataService(GenericService genericRepository)
+        GenericService _genericRepository = new GenericService();
+        public SalesDataService()
         {
-            _genericRepository = genericRepository;
         }
 
         public async Task<String> ValidateSalesPin(string pin)

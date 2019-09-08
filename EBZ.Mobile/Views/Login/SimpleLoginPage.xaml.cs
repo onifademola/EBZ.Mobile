@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EBZ.Mobile.ViewModels.Login;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EBZ.Mobile.Views.Login

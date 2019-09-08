@@ -5,11 +5,10 @@ namespace EBZ.Mobile.Services
 {
     public class UserService : IUserService
     {
-        private readonly SettingsService _settingsService;
+        SettingsService _settingsService = new SettingsService();
 
-        public UserService(SettingsService settingsService)
+        public UserService()
         {
-            _settingsService = settingsService;
         }
 
         public bool IsAuthenticated()

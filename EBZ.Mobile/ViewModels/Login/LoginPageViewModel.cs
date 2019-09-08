@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using EBZ.Mobile.Services;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -11,18 +12,21 @@ namespace EBZ.Mobile.ViewModels.Login
     public class LoginPageViewModel : LoginViewModel
     {
         #region Fields
-
         private string password;
-
+        private AuthenticationService _authenticationService;
+        private SettingsService _settingsService;
+        private DialogService _dialogService;
+        private ConnectionService _connectionService;
         #endregion
 
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance for the <see cref="LoginPageViewModel" /> class.
-        /// </summary>
+        #region Constructor        
         public LoginPageViewModel()
         {
+            _authenticationService = new AuthenticationService();
+            _settingsService = new SettingsService();
+            _dialogService = new DialogService();
+            _connectionService = new ConnectionService();
+
             this.LoginCommand = new Command(this.LoginClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
             this.ForgotPasswordCommand = new Command(this.ForgotPasswordClicked);
@@ -54,6 +58,7 @@ namespace EBZ.Mobile.ViewModels.Login
                 this.OnPropertyChanged();
             }
         }
+
 
         #endregion
 
@@ -87,9 +92,56 @@ namespace EBZ.Mobile.ViewModels.Login
         /// Invoked when the Log In button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void LoginClicked(object obj)
+        private async void LoginClicked(object obj)
         {
-            // Do something
+            _dialogService.ShowDialog("Authenticating...");
+
+            if (_connectionService.IsConnected)
+            {
+                try
+                {
+                    var authenticationResponse = await _authenticationService.Authenticate(Email, Password);
+
+                    if (authenticationResponse.IsAuthenticated)
+                    {
+                        // we store the Id to know if the user is already logged in to the application
+                        _settingsService.UserNameSetting = authenticationResponse.Username;
+                        _settingsService.TokenSetting = authenticationResponse.Token;
+                        _settingsService.ValidToSetting = authenticationResponse.ValidTo.ToShortDateString();
+                        _settingsService.RolesSetting = authenticationResponse.Role;
+
+                        var viewNAvServ = App.ViewNavigationService;
+                        var mainPage = ((NavigationService)viewNAvServ).SetRootPage("MainPage");
+
+                        _dialogService.HideDialog();
+                        App.Current.MainPage = mainPage;
+                    }
+                    else
+                    {
+                        _dialogService.HideDialog();
+                        await _dialogService.ShowDialog(
+                        "This username/password combination is not valid",
+                        "Error logging you in",
+                        "OK");
+                    }
+                }
+                catch (System.Exception)
+                {
+                    _dialogService.HideDialog();
+                    await _dialogService.ShowDialog(
+                    "This username/password combination is not valid",
+                    "Error logging you in",
+                    "OK");
+                }
+            }
+            else
+            {
+                await _dialogService.ShowDialog(
+                    "This username/password combination isn't known",
+                    "Error logging you in",
+                    "OK");
+            }
+
         }
 
         /// <summary>

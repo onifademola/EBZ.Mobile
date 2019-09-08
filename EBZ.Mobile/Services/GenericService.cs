@@ -15,21 +15,21 @@ namespace EBZ.Mobile.Services
 {
     public class GenericService : IGenericService
     {
-        private readonly SettingsService _settingsService;
-        private readonly ConnectionService _connectionService;
+        //private readonly SettingsService _settingsService;
+        //private readonly ConnectionService _connectionService;
 
-        public GenericService(SettingsService settingsService, ConnectionService connectionService)
-        {
-            _settingsService = settingsService;
-            _connectionService = connectionService;
-        }
-
-
-        //SettingsService _settingsService = new SettingsService();
-        //ConnectionService _connectionService = new ConnectionService();
-        //public GenericService()
+        //public GenericService(SettingsService settingsService, ConnectionService connectionService)
         //{
+        //    _settingsService = settingsService;
+        //    _connectionService = connectionService;
         //}
+
+
+        SettingsService _settingsService = new SettingsService();
+        ConnectionService _connectionService = new ConnectionService();
+        public GenericService()
+        {
+        }
 
         public async Task DoAuthAsync(string uri)
         {
