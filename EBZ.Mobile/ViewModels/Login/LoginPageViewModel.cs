@@ -94,7 +94,7 @@ namespace EBZ.Mobile.ViewModels.Login
         /// <param name="obj">The Object</param>
         private async void LoginClicked(object obj)
         {
-            _dialogService.ShowDialog("Authenticating...");
+            _dialogService.ShowLoading("Authenticating...");
 
             if (_connectionService.IsConnected)
             {
@@ -113,12 +113,12 @@ namespace EBZ.Mobile.ViewModels.Login
                         var viewNAvServ = App.ViewNavigationService;
                         var mainPage = ((NavigationService)viewNAvServ).SetRootPage("MainPage");
 
-                        _dialogService.HideDialog();
+                        _dialogService.HideLoading();
                         App.Current.MainPage = mainPage;
                     }
                     else
                     {
-                        _dialogService.HideDialog();
+                        _dialogService.HideLoading();
                         await _dialogService.ShowDialog(
                         "This username/password combination is not valid",
                         "Error logging you in",
@@ -127,7 +127,7 @@ namespace EBZ.Mobile.ViewModels.Login
                 }
                 catch (System.Exception)
                 {
-                    _dialogService.HideDialog();
+                    _dialogService.HideLoading();
                     await _dialogService.ShowDialog(
                     "This username/password combination is not valid",
                     "Error logging you in",

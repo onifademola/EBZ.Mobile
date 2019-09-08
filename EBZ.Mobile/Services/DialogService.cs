@@ -16,12 +16,12 @@ namespace EBZ.Mobile.Services
             UserDialogs.Instance.Toast(message, System.TimeSpan.FromSeconds(4.0));
         }
 
-        public void ShowDialog(string message)
+        public void ShowLoading(string message)
         {
             UserDialogs.Instance.ShowLoading(message, MaskType.Gradient);
         }
 
-        public void HideDialog()
+        public void HideLoading()
         {
             UserDialogs.Instance.HideLoading();
         }

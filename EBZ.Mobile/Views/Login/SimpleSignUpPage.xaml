@@ -107,16 +107,63 @@
                     <!--  Entry to get the confirm password from user  -->
                     <border:SfBorder
                         BackgroundColor="{DynamicResource Gray-White}"
-                        BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                        BorderColor="{Binding Source={x:Reference PhoneEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                         Style="{StaticResource SfBorderStyle}">
                         <control:BorderlessEntry
-                            x:Name="ConfirmPasswordEntry"
-                            IsPassword="true"
-                            Placeholder="Confirm Password"
+                            x:Name="PhoneEntry"
+                            Placeholder="Phone Number"
                             PlaceholderColor="{DynamicResource Gray-94}"
                             Style="{StaticResource EntryStyle}"
-                            Text="{Binding ConfirmPassword}"
+                            Text="{Binding Phone}" 
                             TextColor="{DynamicResource Gray-56}" />
+                    </border:SfBorder>
+
+                    <!--Grid-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="0.5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <border:SfBorder
+                            Grid.Row="0"
+                                Grid.Column="0"
+                        BackgroundColor="{DynamicResource Gray-White}"                        
+                        Style="{StaticResource SfBorderStyle}">
+                            <Picker x:Name="dobDay"
+                                Title="Birth Day"
+                                TitleColor="{DynamicResource Gray-94}"
+                                TextColor="{DynamicResource Gray-56}"
+                                SelectedItem="{Binding SelectedDay}"
+                                BackgroundColor="{DynamicResource Gray-White}"></Picker>
+                        </border:SfBorder>
+                        
+                        <border:SfBorder
+                            Grid.Row="0"
+                                Grid.Column="1"
+                        BackgroundColor="{DynamicResource Gray-White}"                        
+                        Style="{StaticResource SfBorderStyle}">
+                            <Picker x:Name="dobMonth" 
+                                Title="Birth Month"
+                                TitleColor="{DynamicResource Gray-94}"
+                                TextColor="{DynamicResource Gray-56}" 
+                            SelectedItem="{Binding SelectedMonth}"
+                                BackgroundColor="{DynamicResource Gray-White}"></Picker>
+                        </border:SfBorder>
+                        
+                    </Grid>
+                    <!--Grid End-->
+                    <border:SfBorder
+                        BackgroundColor="{DynamicResource Gray-White}"                        
+                        Style="{StaticResource SfBorderStyle}">
+                        <Picker x:Name="catPicker" 
+                            TitleColor="{DynamicResource Gray-94}"
+                            TextColor="{DynamicResource Gray-56}"
+                            ItemDisplayBinding="{Binding Detail}" 
+                            SelectedItem="{Binding SelectedCategory}"
+                            Title="Category"/>
                     </border:SfBorder>
 
                     <!--  Sign-up button  -->
