@@ -14,7 +14,7 @@ namespace EBZ.Mobile.Services
         public bool IsAuthenticated()
         {
             var check = _settingsService.UserNameSetting;
-            if (check.Equals(string.Empty))
+            if (check.Equals(String.Empty))
                 return false;
             return true;
         }

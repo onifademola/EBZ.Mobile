@@ -3,36 +3,43 @@ using Xamarin.Forms;
 
 namespace EBZ.Mobile
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : TabbedPage
     {
-        private SfTabView tabView;
+        //private SfTabView tabView;
         public MainPage()
         {
-            InitializeComponent();
-            tabView = new SfTabView();
-            Grid allContactsGrid = new Grid { BackgroundColor = Color.Red };
-            Grid favoritesGrid = new Grid { BackgroundColor = Color.Green };
-            Grid contactsGrid = new Grid { BackgroundColor = Color.Blue };
-            var tabItems = new TabItemCollection
-            {
-                new SfTabItem()
-                {
-                    Title = "Calls",
-                    Content = allContactsGrid
-                },
-                new SfTabItem()
-                {
-                    Title = "Favorites",
-                    Content = favoritesGrid
-                },
-                new SfTabItem()
-                {
-                    Title = "Contacts",
-                    Content = contactsGrid
-                }
-            };
-            tabView.Items = tabItems;
-            this.Content = tabView;
+            //var salesPage = new SalesPage.SalesScan();
+            //salesPage.Title = "Shop";
+
+            var marketersPage = new Views.Marketer.CustomersListPage();
+            marketersPage.Title = "Customers";
+
+            var customerPage = new Views.Marketer.NewCustomerPage();
+
+            //var transactionsPage = new UserView.Transactions();
+            //transactionsPage.Title = "Txs";
+
+            //var rechargesPage = new UserView.Recharges();
+            //rechargesPage.Title = "Rxs";
+
+            //var mySalesPage = new SalesPage.MySalesTodayPage();
+            //mySalesPage.Title = "Sales";
+
+            //Children.Add(new UserView.UserView());
+            //if (_userService.LoggedInUserRole() != "Customer")
+            //{
+            //    Children.Add(marketersPage);
+            //}
+            Children.Add(marketersPage);
+            Children.Add(customerPage);
+            //Children.Add(rechargesPage);
+            //Children.Add(mySalesPage);
+            //Children.Add(salesPage);
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return base.OnBackButtonPressed();
         }
     }
 }

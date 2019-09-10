@@ -11,6 +11,7 @@
 <PackageReference Include="Polly" Version="7.1.1" />
 <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
 <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+<PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
 <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
 <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.46" />
 <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.2.0.46" />
@@ -171,16 +172,16 @@
 
 <ItemGroup>
   <Reference Include="ZXing.Net.Mobile.Core">
-    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXing.Net.Mobile.Core.dll</HintPath>
+    <HintPath>..\..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\ZXing.Net.Mobile.Core.dll</HintPath>
   </Reference>
   <Reference Include="ZXing.Net.Mobile.Forms">
-    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXing.Net.Mobile.Forms.dll</HintPath>
+    <HintPath>..\..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\ZXing.Net.Mobile.Forms.dll</HintPath>
   </Reference>
   <Reference Include="zxing.portable">
-    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\zxing.portable.dll</HintPath>
+    <HintPath>..\..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\zxing.portable.dll</HintPath>
   </Reference>
   <Reference Include="ZXingNetMobile">
-    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXingNetMobile.dll</HintPath>
+    <HintPath>..\..\..\EBZ\EBZ.Mobile\Portable\bin\Debug\netstandard2.0\ZXingNetMobile.dll</HintPath>
   </Reference>
 </ItemGroup>
 
@@ -190,6 +191,15 @@
     </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marketer\CustomerStyles.xaml.cs">
+      <DependentUpon>CustomerStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marketer\CustomersListPage.xaml.cs">
+      <DependentUpon>CustomersListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Marketer\NewCustomerPage.xaml.cs">
+      <DependentUpon>NewCustomerPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -212,7 +222,19 @@
     <EmbeddedResource Update="Views\Login\SimpleSignUpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketer\CustomerStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Login\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketer\CustomersListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketer\NewCustomerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Marketer\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

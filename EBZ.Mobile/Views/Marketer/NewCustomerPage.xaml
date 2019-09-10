@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="EBZ.Mobile.Views.Marketer.NewCustomerPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:EBZ.Mobile.Controls"
+    xmlns:converter="clr-namespace:EBZ.Mobile.Converters"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:local="clr-namespace:EBZ.Mobile.Views.Marketer"
+    xmlns:viewModel="clr-namespace:EBZ.Mobile.ViewModels.Marketer"
+    xmlns:local1="clr-namespace:EBZ.Mobile.Views.Login"
+    Title="New Customer"
+    BackgroundColor="{DynamicResource Gray-F0}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CustomerStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for sign-up page  -->
+    <ContentPage.BindingContext>
+        <viewModel:NewCustomerPageModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="Center">
+            <ScrollView.VerticalOptions>
+                <OnIdiom
+                    x:TypeArguments="LayoutOptions"
+                    Default="CenterAndExpand"
+                    Phone="FillAndExpand" />
+            </ScrollView.VerticalOptions>
+
+            <StackLayout
+                Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
+                                                             PhoneLandscape='150,32',
+                                                             TabletPortrait='200,50',
+                                                             TabletLandscape='300,50',
+                                                             Desktop='30'}"
+                Spacing="0"
+                VerticalOptions="FillAndExpand"
+                WidthRequest="{OnPlatform Default='-1',
+                                          UWP='350'}">
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Spacing="24"
+                    VerticalOptions="CenterAndExpand">
+
+                    <!--  Label to display the title of this page  -->
+                    <Label
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource LabelStyle}"
+                        Text="New Customer"
+                        TextColor="{DynamicResource Gray-56}" />
+
+                    <!--  Label to display the description of this page  -->
+                    <Label
+                        x:Name="text"
+                        Margin="0,-16,0,8"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource LabelStyle}"
+                        Text="Add a new Customer to your clientele list"
+                        TextColor="{DynamicResource Gray-6F}" />
+
+                    <!--  Entry to get username from user  -->
+                    <border:SfBorder
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                        Style="{StaticResource SfBorderStyle}">
+                        <control:BorderlessEntry
+                            x:Name="NameEntry"
+                            Placeholder="Name"
+                            PlaceholderColor="{DynamicResource Gray-94}"
+                            Style="{StaticResource EntryStyle}"
+                            Text="{Binding Name}"
+                            TextColor="{DynamicResource Gray-56}" />
+                    </border:SfBorder>
+
+                    <!--  Entry to get email ID from user  -->
+                    <local1:SimpleEmailEntry />
+
+                    <!--  Entry to get the phone number from user  -->
+                    <border:SfBorder
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        BorderColor="{Binding Source={x:Reference PhoneEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                        Style="{StaticResource SfBorderStyle}">
+                        <control:BorderlessEntry
+                            x:Name="PhoneEntry"
+                            Placeholder="Phone Number"
+                            PlaceholderColor="{DynamicResource Gray-94}"
+                            Style="{StaticResource EntryStyle}"
+                            Text="{Binding Phone}" 
+                            TextColor="{DynamicResource Gray-56}" />
+                    </border:SfBorder>
+
+                    <!--Grid-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="0.5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <border:SfBorder
+                            Grid.Row="0"
+                                Grid.Column="0"
+                        BackgroundColor="{DynamicResource Gray-White}"                        
+                        Style="{StaticResource SfBorderStyle}">
+                            <Picker x:Name="dobDay"
+                                Title="Birth Day"
+                                TitleColor="{DynamicResource Gray-94}"
+                                TextColor="{DynamicResource Gray-56}"
+                                SelectedItem="{Binding SelectedDay}"
+                                BackgroundColor="{DynamicResource Gray-White}"></Picker>
+                        </border:SfBorder>
+
+                        <border:SfBorder
+                            Grid.Row="0"
+                                Grid.Column="1"
+                        BackgroundColor="{DynamicResource Gray-White}"                        
+                        Style="{StaticResource SfBorderStyle}">
+                            <Picker x:Name="dobMonth" 
+                                Title="Birth Month"
+                                TitleColor="{DynamicResource Gray-94}"
+                                TextColor="{DynamicResource Gray-56}" 
+                            SelectedItem="{Binding SelectedMonth}"
+                                BackgroundColor="{DynamicResource Gray-White}"></Picker>
+                        </border:SfBorder>
+
+                    </Grid>
+                    <!--Grid End-->
+                    <border:SfBorder
+                        BackgroundColor="{DynamicResource Gray-White}"                        
+                        Style="{StaticResource SfBorderStyle}">
+                        <Picker x:Name="catPicker" 
+                            TitleColor="{DynamicResource Gray-94}"
+                            TextColor="{DynamicResource Gray-56}"
+                            ItemDisplayBinding="{Binding Detail}" 
+                            SelectedItem="{Binding SelectedCategory}"
+                            Title="Category"/>
+                    </border:SfBorder>
+
+                    <!--  Sign-up button  -->
+                    <buttons:SfButton
+                        Command="{Binding CreateCommand}"
+                        CornerRadius="20"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="CREATE" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

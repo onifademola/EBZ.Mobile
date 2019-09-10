@@ -125,6 +125,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.46" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.2.0.46" />

@@ -1,3 +1,4 @@
+using FFImageLoading.Forms.Platform;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,7 @@ namespace EBZ.Mobile.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            CachedImageRenderer.Init();
             SfGradientViewRenderer.Init();
             
 			SfChartRenderer.Init();

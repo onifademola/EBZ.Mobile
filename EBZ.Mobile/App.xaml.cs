@@ -1,4 +1,4 @@
-﻿using EBZ.Mobile.AppStart;
+using EBZ.Mobile.AppStart;
 using EBZ.Mobile.Services;
 using EBZ.Mobile.ServicesInterface;
 using Xamarin.Forms;
@@ -7,8 +7,8 @@ namespace EBZ.Mobile
 {
     public partial class App : Application
     {
+        public static string BaseImageUrl { get; } = App.BaseImageUrl + "https://raw.githubusercontent.com/sumathij/essential-ui-kit-for-xamarin.forms/master/Images/";
         UtilityService _utilityService = new UtilityService();
-        ViewNavigationService viewNavigationService = new ViewNavigationService();
 
         public App()
         {
@@ -18,8 +18,8 @@ namespace EBZ.Mobile
             RegisterViews();
             InitializeComponent();
             StartupControl();
-            //MainPage = new EBZ.Mobile.MainPage();
-            //MainPage = new Views.Login.SimpleLoginPage();
+            //var page = ((NavigationService)ViewNavigationService).SetRootPage("BookmarksPage");
+            //MainPage = page;
         }
 
         protected override void OnStart()
@@ -64,7 +64,7 @@ namespace EBZ.Mobile
             ViewNavigationService.Configure("SimpleSignUpPage", typeof(Views.Login.SimpleSignUpPage));
             ViewNavigationService.Configure("SimpleResetPasswordPage", typeof(Views.Login.SimpleResetPasswordPage));
             ViewNavigationService.Configure("SimpleForgotPasswordPage", typeof(Views.Login.SimpleForgotPasswordPage));
-            //ViewNavigationService.Configure("MainPage", typeof(MainPage));
+            ViewNavigationService.Configure("CustomersListPage", typeof(Views.Marketer.CustomersListPage));
             //ViewNavigationService.Configure("ModalNavigationPage", typeof(Views.ModalNavigationPage));
             //ViewNavigationService.Configure("PushNavigationPage", typeof(Views.PushNavigationPage));
 

@@ -1,4 +1,5 @@
-﻿using System;
+using FFImageLoading.Forms.Platform;
+using System;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -18,12 +19,13 @@ namespace EBZ.Mobile.Android
             ToolbarResource = Resource.Layout.Toolbar;
 
             UserDialogs.Init(this);
-            ToastConfig.DefaultDuration = TimeSpan.FromSeconds(4.0);
-            ToastConfig.DefaultPosition = ToastPosition.Bottom;
+            ToastConfig.DefaultDuration = TimeSpan.FromSeconds(5.0);
+            ToastConfig.DefaultPosition = ToastPosition.Top;
 
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            CachedImageRenderer.Init(true);
             LoadApplication(new App());
         }
 
