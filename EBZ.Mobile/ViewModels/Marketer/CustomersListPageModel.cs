@@ -157,8 +157,8 @@ namespace EBZ.Mobile.ViewModels.Marketer
         /// <param name="obj">The object</param>
         private async void AddButtonClicked(object obj)
         {
-            //ViewNavigationService.Configure("NewCustomerPage", typeof(Views.Marketer.NewCustomerPage));
-            await _navigationService.NavigateModalAsync("NewCustomerPage", "");
+            var navServ = App.ViewNavigationService;
+            await navServ.NavigateModalAsync("NewCustomerPage");
         }
 
         private void BookmarkButtonClicked(object obj)
@@ -177,7 +177,6 @@ namespace EBZ.Mobile.ViewModels.Marketer
             // Do something
         }
 
-        //public static INavigationService ViewNavigationService { get; } = new NavigationService();
         #endregion
     }
 }

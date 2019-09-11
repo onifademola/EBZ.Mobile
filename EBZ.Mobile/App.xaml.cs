@@ -1,3 +1,4 @@
+using Akavache;
 using EBZ.Mobile.AppStart;
 using EBZ.Mobile.Services;
 using EBZ.Mobile.ServicesInterface;
@@ -13,7 +14,7 @@ namespace EBZ.Mobile
         public App()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTM5MTQ4QDMxMzcyZTMyMmUzMGdMOURWSEZhZnRRdEkzaVBFZ2tteVBRNG1hZHFYbHo5eGhZdDhhV29JZlE9;MTM5MTQ5QDMxMzcyZTMyMmUzMGN2SmZFOUpaSG5vZzJTcGh1U0Z2ZG43OGdVTUJRQmRrdmxERHZTODQyNmc9;MTM5MTUwQDMxMzcyZTMyMmUzMExwTit3ZW5ncjBqS09kVGRFMEpwaHpVVW5Bb055WkpiTVVQZXZ5aFUzWGc9;MTM5MTUxQDMxMzcyZTMyMmUzMGpPbEd3RFlEc09nTWRDSFJuQ3hKWGl3alhhOXVkTCt4dUFUSFhGbEtwZGs9;MTM5MTUyQDMxMzcyZTMyMmUzMFM3RDd6V29VNmo3akNpN2tOUFVIMytXTFY4cXpJREhIaWprVmw3bDljdW89;MTM5MTUzQDMxMzcyZTMyMmUzMFhrMkVodk53RW5JZzlGT21TRHZHM21OZmRPV3k3eUJOR3pLcm00cFlVTG89;MTM5MTU0QDMxMzcyZTMyMmUzMGtQOXV2aXlIcGdnMUF2M255eS9kT3R0eDJ2d0hhc0ZLZzF6Z09iTlVNVjg9;MTM5MTU1QDMxMzcyZTMyMmUzMGUyWVBYVFc3ZzlpY25wbUg0bm1JT1VJM1pheVdRd3FuNStpcHNMcWZzQ009;MTM5MTU2QDMxMzcyZTMyMmUzMFBpT0hpTG5sM3R6RzVlTVpmSWNvL1FWNnRYK2tEUkcxRS84eGwrOHNXWEk9;MTM5MTU3QDMxMzcyZTMyMmUzMFM3RDd6V29VNmo3akNpN2tOUFVIMytXTFY4cXpJREhIaWprVmw3bDljdW89");
-
+            BlobCache.ApplicationName = "EBZmobile";
             AppContainer.RegisterDependencies();
             RegisterViews();
             InitializeComponent();
@@ -65,6 +66,7 @@ namespace EBZ.Mobile
             ViewNavigationService.Configure("SimpleResetPasswordPage", typeof(Views.Login.SimpleResetPasswordPage));
             ViewNavigationService.Configure("SimpleForgotPasswordPage", typeof(Views.Login.SimpleForgotPasswordPage));
             ViewNavigationService.Configure("CustomersListPage", typeof(Views.Marketer.CustomersListPage));
+            ViewNavigationService.Configure("NewCustomerPage", typeof(Views.Marketer.NewCustomerPage));
             //ViewNavigationService.Configure("ModalNavigationPage", typeof(Views.ModalNavigationPage));
             //ViewNavigationService.Configure("PushNavigationPage", typeof(Views.PushNavigationPage));
 

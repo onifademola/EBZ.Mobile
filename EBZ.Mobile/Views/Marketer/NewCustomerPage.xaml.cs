@@ -39,7 +39,8 @@ namespace EBZ.Mobile.Views.Marketer
         protected override bool OnBackButtonPressed()
         {
             //return base.OnBackButtonPressed();
-            Navigation.PopAsync();
+            var navServ = App.ViewNavigationService;
+            navServ.GoBack();
             return true;
         }
     }

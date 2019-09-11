@@ -1,4 +1,5 @@
-﻿using EBZ.Mobile.ServicesInterface;
+﻿using Akavache;
+using EBZ.Mobile.ServicesInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace EBZ.Mobile.Services
         private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
         private readonly Stack<NavigationPage> _navigationPageStack =
             new Stack<NavigationPage>();
+        //public Dictionary<string, Type> savedPagesKey;
+        
         private NavigationPage CurrentNavigationPage => _navigationPageStack.Peek();
 
         public void Configure(string pageKey, Type pageType)
@@ -29,6 +32,9 @@ namespace EBZ.Mobile.Services
                     _pagesByKey.Add(pageKey, pageType);
                 }
             }
+            //savedPagesKey = _pagesByKey;
+            Application.Current.Properties["_savedPagesKey"] = _pagesByKey;
+           // BlobCache.InMemory.InsertAllObjects("PagesByKey", _pagesByKey);
         }
 
         public Page SetRootPage(string rootPageKey)
@@ -106,16 +112,16 @@ namespace EBZ.Mobile.Services
 
         private Page GetPage(string pageKey, object parameter = null)
         {
-
+            Dictionary<string, Type> savedPagesKey = (Dictionary<string, Type>)Application.Current.Properties["_savedPagesKey"];
             lock (_sync)
             {
-                if (!_pagesByKey.ContainsKey(pageKey))
+                if (!savedPagesKey.ContainsKey(pageKey))
                 {
                     throw new ArgumentException(
                         $"No such page: {pageKey}. Did you forget to call NavigationService.Configure?");
                 }
 
-                var type = _pagesByKey[pageKey];
+                var type = savedPagesKey[pageKey];
                 ConstructorInfo constructor;
                 object[] parameters;
 
