@@ -201,6 +201,12 @@
     <Compile Update="Views\Marketer\NewCustomerPage.xaml.cs">
       <DependentUpon>NewCustomerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Sales\PaymentPage.xaml.cs">
+      <DependentUpon>PaymentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Sales\SalesStyles.xaml.cs">
+      <DependentUpon>SalesStyles.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -237,11 +243,17 @@
     <EmbeddedResource Update="Views\Marketer\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sales\PaymentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Sales\SelectProductPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Sales\StartSalesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sales\SalesStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

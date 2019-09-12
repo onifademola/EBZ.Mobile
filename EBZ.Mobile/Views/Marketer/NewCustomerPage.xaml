@@ -8,7 +8,6 @@
     xmlns:control="clr-namespace:EBZ.Mobile.Controls"
     xmlns:converter="clr-namespace:EBZ.Mobile.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-    xmlns:local="clr-namespace:EBZ.Mobile.Views.Marketer"
     xmlns:viewModel="clr-namespace:EBZ.Mobile.ViewModels.Marketer"
     xmlns:local1="clr-namespace:EBZ.Mobile.Views.Login"
     Title="New Customer"

@@ -48,7 +48,6 @@ namespace EBZ.Mobile.ViewModels.Sales
 
         public SelectProductPageModel()
         {
-            NavigateToSelectModelsCommand = new Command<Object>(NavigateToSelectModels);
             itemTappedCommand = new Command(OnItemTapped);
             InitializeData();
         }
@@ -90,19 +89,13 @@ namespace EBZ.Mobile.ViewModels.Sales
                 await navServ.GoBack();
             }
         }
-
-        private void NavigateToSelectModels(object model)
-        {
-            var customerPricing = model as CustomerPricing;
-            Application.Current.Properties["transSelectedCustomerPricing"] = customerPricing;
-            App.Current.MainPage.DisplayAlert("Message", "Tapped customer group value :" + customerPricing.CostView, "OK");
-        }
-
-        public void OnItemTapped(object obj)
+        
+        public async void OnItemTapped(object obj)
         {
             var customerPricing = obj as CustomerPricing;
             Application.Current.Properties["transSelectedCustomerPricing"] = customerPricing;
-            App.Current.MainPage.DisplayAlert("Message", "Tapped item data: " + customerPricing.CostView, "OK");
+            var navServ = App.ViewNavigationService;
+            await navServ.GoBack();
         }
     }
 }

@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="EBZ.Mobile.Views.Sales.PaymentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:EBZ.Mobile.Controls"
+    xmlns:converter="clr-namespace:EBZ.Mobile.Converters"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:viewModel="clr-namespace:EBZ.Mobile.ViewModels.Sales"
+    Title="New Customer"
+    BackgroundColor="{DynamicResource Gray-F0}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="SalesStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for sign-up page  -->
+    <ContentPage.BindingContext>
+        <viewModel:PaymentPageModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>        
+        <ScrollView HorizontalOptions="Center">
+            <ScrollView.VerticalOptions>
+                <OnIdiom
+                    x:TypeArguments="LayoutOptions"
+                    Default="CenterAndExpand"
+                    Phone="FillAndExpand" />
+            </ScrollView.VerticalOptions>
+            <StackLayout Padding="20" Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
+                                                             PhoneLandscape='150,32',
+                                                             TabletPortrait='200,50',
+                                                             TabletLandscape='300,50',
+                                                             Desktop='30'}"
+                Spacing="0"
+                VerticalOptions="FillAndExpand"
+                WidthRequest="{OnPlatform Default='-1',
+                                          UWP='350'}">
+                <ContentView HorizontalOptions="CenterAndExpand">
+                    <Label x:Name="entryUserName"
+                   TextColor="DodgerBlue" 
+                   FontFamily="Arial"
+                   FontSize="Medium">
+                    </Label>
+                </ContentView>
+                <Label>Product</Label>
+                <border:SfBorder Style="{StaticResource TextBorderStyle}">
+                    <Label BindingContext="{Binding Product}" Style="{StaticResource LockedTextBoxesStyle}"/>
+                </border:SfBorder>
+                <Label>Unit Cost</Label>
+                <border:SfBorder Style="{StaticResource TextBorderStyle}">
+                    <Label BindingContext="{Binding UnitCost}" Style="{StaticResource OtherLockedTextBoxesStyle}"/>
+                </border:SfBorder>
+                <Label>Account Balance</Label>
+                <border:SfBorder Style="{StaticResource TextBorderStyle}">
+                    <Label BindingContext="{Binding AccountBalance}" Style="{StaticResource OtherLockedTextBoxesStyle}"/>
+                </border:SfBorder>
+                <!--<Label>Quantity</Label>
+                <telerikInput:RadNumericInput x:Name="inputQuantity"
+                                          Step="0.5"
+                                          Style="{StaticResource LoginEntryStyle}"
+                                          ValueChanged="InputQuantity_ValueChanged" />
+                <Label>Amount</Label>
+                <telerikInput:RadNumericInput x:Name="inputAmount" 
+                                          Step="100"
+                                          Style="{StaticResource LoginEntryStyle}"
+                                          ValueChanged="InputAmount_ValueChanged" 
+                                          StringFormat="N {0:#,##.00}"/>-->
+                <!--Grid-->
+                <!--<Grid>
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+                    <telerikInput:RadEntry x:Name="entrySalesPin" 
+                                   IsPassword="True"
+                                   IsEnabled="False"
+                                   WatermarkText="Sales Person's PIN"
+                                   Keyboard="Numeric"
+                                   TextChanged="EntrySalesPin_TextChanged"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                   Style="{StaticResource LoginEntryStyle}"/>
+                    <telerikInput:RadButton x:Name="btnVerifySalesPin" Text="Verify PIN"
+                                        TextColor="Red"
+                                        Grid.Row="0"
+                                       Grid.Column="1"
+                                        BackgroundColor="Transparent"
+                                        Style="{StaticResource ActionButtonStyle}"
+                                        Clicked="BtnVerifySalesPin_Clicked"/>
+                </Grid>-->
+                <!--Grid End-->
+                <!--Grid-->
+                <!--<Grid>
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+                    <telerikInput:RadEntry x:Name="entryCustomerPin" 
+                                   IsPassword="True"
+                                   IsEnabled="False"
+                                   Keyboard="Numeric"
+                                   TextChanged="EntryCustomerPin_TextChanged"
+                                   WatermarkText="Customer's PIN"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                   Style="{StaticResource LoginEntryStyle}"/>
+                    <telerikInput:RadButton x:Name="btnVerifyCustomerPin" Text="Verify PIN" 
+                                        TextColor="Red"
+                                        Grid.Row="0"
+                                       Grid.Column="1"
+                                        BackgroundColor="Transparent"
+                                        Style="{StaticResource ActionButtonStyle}"
+                                        Clicked="BtnVerifyCustomerPin_Clicked"/>
+                </Grid>-->
+                <!--Grid End-->
+                <!--<telerikInput:RadButton x:Name="payButton"
+                                    TextColor="White" 
+                                    Text="PAY"
+                                    Clicked="PayButton_Clicked"
+                                    IsVisible="False"
+                                    IsEnabled="False"
+                                    Style="{StaticResource ActionButtonStyle}"/>-->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
