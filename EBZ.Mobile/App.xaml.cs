@@ -19,7 +19,7 @@ namespace EBZ.Mobile
             RegisterViews();
             InitializeComponent();
             StartupControl();
-            //var page = ((NavigationService)ViewNavigationService).SetRootPage("BookmarksPage");
+            //var page = ((NavigationService)ViewNavigationService).SetRootPage("StartSalesPage");
             //MainPage = page;
         }
 
@@ -67,9 +67,8 @@ namespace EBZ.Mobile
             ViewNavigationService.Configure("SimpleForgotPasswordPage", typeof(Views.Login.SimpleForgotPasswordPage));
             ViewNavigationService.Configure("CustomersListPage", typeof(Views.Marketer.CustomersListPage));
             ViewNavigationService.Configure("NewCustomerPage", typeof(Views.Marketer.NewCustomerPage));
-            //ViewNavigationService.Configure("ModalNavigationPage", typeof(Views.ModalNavigationPage));
-            //ViewNavigationService.Configure("PushNavigationPage", typeof(Views.PushNavigationPage));
-
+            ViewNavigationService.Configure("StartSalesPage", typeof(Views.Sales.StartSalesPage));
+            ViewNavigationService.Configure("SelectProductPage", typeof(Views.Sales.SelectProductPage));
         }
 
         public static INavigationService ViewNavigationService { get; } = new NavigationService();

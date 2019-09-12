@@ -8,13 +8,11 @@ namespace EBZ.Mobile
         //private SfTabView tabView;
         public MainPage()
         {
-            //var salesPage = new SalesPage.SalesScan();
-            //salesPage.Title = "Shop";
-
             var marketersPage = new Views.Marketer.CustomersListPage();
             marketersPage.Title = "Customers";
 
-            var customerPage = new Views.Marketer.NewCustomerPage();
+            var shop = new Views.Sales.StartSalesPage();
+            shop.Title = "Shop";
 
             //var transactionsPage = new UserView.Transactions();
             //transactionsPage.Title = "Txs";
@@ -31,7 +29,7 @@ namespace EBZ.Mobile
             //    Children.Add(marketersPage);
             //}
             Children.Add(marketersPage);
-            Children.Add(customerPage);
+            Children.Add(shop);
             //Children.Add(rechargesPage);
             //Children.Add(mySalesPage);
             //Children.Add(salesPage);

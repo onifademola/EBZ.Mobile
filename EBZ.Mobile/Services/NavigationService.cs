@@ -112,7 +112,14 @@ namespace EBZ.Mobile.Services
 
         private Page GetPage(string pageKey, object parameter = null)
         {
+            if (!Application.Current.Properties.ContainsKey("_savedPagesKey"))
+            {
+                throw new InvalidOperationException(
+                       "No registered views found");
+            }
+
             Dictionary<string, Type> savedPagesKey = (Dictionary<string, Type>)Application.Current.Properties["_savedPagesKey"];
+
             lock (_sync)
             {
                 if (!savedPagesKey.ContainsKey(pageKey))

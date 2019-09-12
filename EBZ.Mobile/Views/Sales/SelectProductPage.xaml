@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:EBZ.Mobile.ViewModels.Sales"
+             xmlns:pullToRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+             x:Class="EBZ.Mobile.Views.Sales.SelectProductPage">
+
+    <ContentPage.BindingContext>
+        <viewModel:SelectProductPageModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <!--<StackLayout>
+            <listview:SfListView x:Name="listView" ItemsSource="{Binding CustomerPricings}" TapCommand="{Binding NavigateToSelectModelsCommand}" TapCommandParameter="{Binding}"
+                 SelectionGesture="Tap" AllowGroupExpandCollapse="True" SelectionMode="Single">
+                <listview:SfListView.ItemTemplate >
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid Padding="10" Margin="5" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="0"
+                                       Text="{Binding ProductName}"
+                                       FontSize="Large"
+                                       FontAttributes="Bold" />
+
+                                    <Label Grid.Row="1"
+                                       Grid.ColumnSpan="2"
+                                       Margin="0"
+                                       Text="{Binding ProductUom}" />
+
+                                    <Label Grid.Row="2"
+                                       Grid.ColumnSpan="2"
+                                       Margin="0"
+                                       HorizontalOptions="End"
+                                       HorizontalTextAlignment="End"
+                                       VerticalTextAlignment="End"
+                                       FontSize="20"
+                                       Text="{Binding CostView}"/>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </listview:SfListView.ItemTemplate>
+            </listview:SfListView>
+        </StackLayout>-->
+        <pullToRefresh:SfPullToRefresh x:Name="pullToRefresh" 
+                                       PullingThreshold="60" 
+                                       ProgressStrokeWidth="5" 
+                                       ProgressBackgroundColor="CornflowerBlue" 
+                                       ProgressStrokeColor="White" 
+                                       RefreshContentWidth="40" 
+                                       RefreshContentHeight="40" 
+                                       TransitionMode="Push" 
+                                       IsRefreshing="False">
+            <pullToRefresh:SfPullToRefresh.PullableContent>
+                <listview:SfListView x:Name="listView" 
+                                       ItemSize="80" 
+                                       ItemsSource="{Binding CustomerPricings}" 
+                                       ItemSpacing="0,0,0,1" 
+                                       BackgroundColor="LightGray"
+                                       SelectionBackgroundColor="Khaki"
+                                       SelectionGesture="Tap"
+                                     SelectedItem="{Binding SelectedItem}"
+                                       SelectionMode="Single">
+                    <listview:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnSpacing="5" BackgroundColor="White" Padding="5" >
+                                
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Column="0"  
+                                             HeightRequest="70" 
+                                             WidthRequest="70"  
+                                             VerticalOptions="Center" 
+                                             HorizontalOptions="Center" 
+                                             BackgroundColor="{Binding BackgroundColor}">
+
+                                    <Grid  HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand" >
+
+                                        <Label Text="{Binding ProductName}" 
+                                               TextColor="White" 
+                                               FontSize="25" 
+                                               HorizontalOptions="CenterAndExpand" 
+                                               VerticalOptions="CenterAndExpand"/>
+                                    </Grid>
+
+                                </StackLayout>
+
+                                <Grid Grid.Column="1" RowSpacing="0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="{Binding ProductName}" 
+                                           TextColor="Black" 
+                                           FontAttributes="Bold" 
+                                           FontSize="20"/>
+                                    <Label Grid.Row="1" 
+                                           FontSize = "15" 
+                                           TextColor="Black" 
+                                           FontAttributes="Bold" 
+                                           Text="{Binding ProductUom}" 
+                                           LineBreakMode="TailTruncation"  />
+                                    <Label Grid.Row="2" 
+                                           FontSize="14" 
+                                           TextColor="Black" 
+                                           Text="{Binding CostView}" 
+                                           LineBreakMode="TailTruncation" />
+                                </Grid>
+
+                            </Grid>
+                        </DataTemplate>
+                    </listview:SfListView.ItemTemplate>
+                </listview:SfListView>
+            </pullToRefresh:SfPullToRefresh.PullableContent>
+        </pullToRefresh:SfPullToRefresh>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,13 +1,11 @@
 ﻿using EBZ.Mobile.Extensions;
 using EBZ.Mobile.Models;
 using EBZ.Mobile.Services;
-using EBZ.Mobile.ServicesInterface;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EBZ.Mobile.Models.Marketer.Article;
 
 namespace EBZ.Mobile.ViewModels.Marketer
 {
@@ -25,7 +23,6 @@ namespace EBZ.Mobile.ViewModels.Marketer
         NavigationService _navigationService = new NavigationService();
 
         public ObservableCollection<MarketerCustomer> _customers { get; set; }
-        private ObservableCollection<Model> latestStories;
 
         #endregion
 
@@ -75,22 +72,6 @@ namespace EBZ.Mobile.ViewModels.Marketer
                     _customers = value;
                     this.NotifyPropertyChanged();
                 }
-            }
-        }
-
-        public ObservableCollection<Model> LatestStories
-        {
-            get { return this.latestStories; }
-
-            set
-            {
-                if (this.latestStories == value)
-                {
-                    return;
-                }
-
-                this.latestStories = value;
-                this.NotifyPropertyChanged();
             }
         }
 
@@ -163,10 +144,7 @@ namespace EBZ.Mobile.ViewModels.Marketer
 
         private void BookmarkButtonClicked(object obj)
         {
-            if (obj is Model article)
-            {
-                article.IsBookmarked = !article.IsBookmarked;
-            }
+            
         }
 
         /// <summary>
