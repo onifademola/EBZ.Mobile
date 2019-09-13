@@ -32,8 +32,8 @@ namespace EBZ.Mobile.Views.Sales
             };
 
             btnBegin.Clicked += async delegate
-            {
-                Application.Current.Properties["transCustomer"] = txtEntry.Text;
+            {                
+                Application.Current.Properties["transCustomer"] = "onifademola@gmail.com";
                 await navServ.NavigateModalAsync("SelectProductPage");
             };
         }

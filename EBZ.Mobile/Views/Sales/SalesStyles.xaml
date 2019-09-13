@@ -5,9 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:EBZ.Mobile.Controls"
     xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
 
     <Color x:Key="Transparent">Transparent</Color>
+
+    <Color x:Key="EntryPlaceholderColor">#A0FFFFFF</Color>
+    <Color x:Key="BorderBackgroundColor">#20FFFFFF</Color>
+    <Color x:Key="GradientStartColor">#012E8B</Color>
+    <Color x:Key="GradientEndColor">#3F0041</Color>
 
     <!--  Font Icon Text  -->
     <x:String x:Key="BurgerMenu">&#xe72e;</x:String>
@@ -21,51 +27,66 @@
     <x:String x:Key="Profile">&#xe70e;</x:String>
     <x:String x:Key="Activity">&#xe700;</x:String>
 
-    <!--  Common style for Navigation bar SfButton  -->
-    <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
-        <Setter Property="FontSize" Value="18" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="HorizontalOptions" Value="Fill" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="BorderWidth" Value="0" />
-        <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    <!--  Common style for labels  -->
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource GradientStartColor}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="LineHeight" Value="1.25" />
+        <Setter Property="Margin" Value="0,12,0,0" />
     </Style>
 
-    <!--  Common style for Navigation bar SfButton  -->
-    <Style x:Key="BookmarkIconStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="VerticalOptions" Value="Center" />
+    <!--  Common style for borders  -->
+    <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="BackgroundColor" Value="{StaticResource BorderBackgroundColor}" />
+        <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="BorderWidth" Value="1" />
+    </Style>
+
+    <!--  Common style for entries  -->
+    <Style x:Key="EntryStyle" TargetType="control:BorderlessEntry">
+        <Setter Property="PlaceholderColor" Value="{StaticResource EntryPlaceholderColor}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="BorderWidth" Value="0" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Margin" Value="15,0" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="HorizontalTextAlignment" Value="End" />
     </Style>
 
     <!--  Common style for rounded profile image  -->
     <Style x:Key="TextBorderStyle" TargetType="border:SfBorder">
-        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
         <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="BorderWidth" Value="12" />
+        <Setter Property="BorderWidth" Value="4" />
         <Setter Property="CornerRadius" Value="20" />
-        
+        <Setter Property="BorderColor" Value="DarkBlue" />
     </Style>
     
     <!--  Common style for Locked Textboxes  -->
     <Style x:Key="LockedTextBoxesStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="DarkSlateGray" />
+        <Setter Property="TextColor" Value="Beige" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Start" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="18" />
     </Style>
 
     <!--  Common style for Other Locked Textboxes  -->
     <Style x:Key="OtherLockedTextBoxesStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="DarkSlateGray" />
-        <Setter Property="VerticalTextAlignment" Value="Center" />
-        <Setter Property="HorizontalOptions" Value="End" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-56}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="End" />
+        <Setter Property="Margin" Value="16, 12" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.5}" />
+        <Setter Property="LineBreakMode" Value="TailTruncation" />
+        <Setter Property="MaxLines" Value="2" />
     </Style>
 
     <!--  Common style for profile page Label  -->

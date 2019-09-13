@@ -54,21 +54,17 @@ namespace EBZ.Mobile.ViewModels.Sales
                     return;
                 }
                 this._customersPricing = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
         public string Product
         {
-            get { return this._product; }
+            get { return _product; }
             set
-            {
-                if (this._product == value)
-                {
-                    return;
-                }
-                this._product = value;
-                this.NotifyPropertyChanged();
+            {                
+                _product = value;
+                OnPropertyChanged();
             }
         }
 
@@ -82,7 +78,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                     return;
                 }
                 this._customerEmail = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -96,7 +92,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                     return;
                 }
                 this._unitCost = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -110,7 +106,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                     return;
                 }
                 this._accountBalance = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -124,7 +120,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                     return;
                 }
                 this._inputQuantity = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -138,7 +134,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                     return;
                 }
                 this._inputAmount = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -152,7 +148,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                     return;
                 }
                 this._inputSalesPin = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
         public string InputCustomerPin
@@ -165,7 +161,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                     return;
                 }
                 this._inputCustomerPin = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -179,7 +175,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                     return;
                 }
                 this._inputSalesPinVerify = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -193,7 +189,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                     return;
                 }
                 this._inputCustomerPinVerify = value;
-                this.NotifyPropertyChanged();
+                this.OnPropertyChanged();
             }
         }
 
@@ -222,17 +218,20 @@ namespace EBZ.Mobile.ViewModels.Sales
             if (Application.Current.Properties.ContainsKey("transSelectedCustomerPricing"))
             {
                 _customersPricing = (CustomerPricing)Application.Current.Properties["transSelectedCustomerPricing"];
+                _customerEmail = (string)Application.Current.Properties["transCustomer"];
 
                 Application.Current.Properties["transSelectedCustomerPricing"] = null;
+                Application.Current.Properties["transCustomer"] = null;
 
-                this._product = _customersPricing.ProductName;
-                this._unitCost = _customersPricing.ProductUom;
-                this._accountBalance = _customersPricing.CustomerBalanceView;
+                this.CustomerEmail = _customerEmail;
+                this.Product = _customersPricing.ProductName;
+                this.UnitCost = _customersPricing.CostView;
+                this.AccountBalance = _customersPricing.CustomerBalanceView;
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

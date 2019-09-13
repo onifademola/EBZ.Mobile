@@ -69,6 +69,7 @@ namespace EBZ.Mobile
             ViewNavigationService.Configure("NewCustomerPage", typeof(Views.Marketer.NewCustomerPage));
             ViewNavigationService.Configure("StartSalesPage", typeof(Views.Sales.StartSalesPage));
             ViewNavigationService.Configure("SelectProductPage", typeof(Views.Sales.SelectProductPage));
+            ViewNavigationService.Configure("PaymentPage", typeof(Views.Sales.PaymentPage));
         }
 
         public static INavigationService ViewNavigationService { get; } = new NavigationService();

@@ -61,11 +61,6 @@ namespace EBZ.Mobile.ViewModels.Sales
             {
                 _customerEmail = (string)Application.Current.Properties["transCustomer"];
 
-                Application.Current.Properties["transCustomer"] = null;
-
-                //test
-                var au = (string)Application.Current.Properties["transCustomer"];
-
                 _dialogService.ShowLoading("Loading...");
                 var pricings = await _customerDataService.GetCustomersPricing(_customerEmail);
                 if (pricings != null)
@@ -95,7 +90,7 @@ namespace EBZ.Mobile.ViewModels.Sales
             var customerPricing = obj as CustomerPricing;
             Application.Current.Properties["transSelectedCustomerPricing"] = customerPricing;
             var navServ = App.ViewNavigationService;
-            await navServ.GoBack();
+            await navServ.NavigateModalAsync("PaymentPage");
         }
     }
 }

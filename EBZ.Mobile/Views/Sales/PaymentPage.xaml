@@ -2,6 +2,8 @@
 <ContentPage
     x:Class="EBZ.Mobile.Views.Sales.PaymentPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:numericupdown="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
@@ -23,58 +25,80 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!--  Binding context for sign-up page  -->
+    <!--  Binding context for page  -->
     <ContentPage.BindingContext>
         <viewModel:PaymentPageModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.Content>        
-        <ScrollView HorizontalOptions="Center">
-            <ScrollView.VerticalOptions>
+    <ContentPage.Content>
+        <ScrollView>
+            <!--<ScrollView.VerticalOptions>
                 <OnIdiom
                     x:TypeArguments="LayoutOptions"
                     Default="CenterAndExpand"
                     Phone="FillAndExpand" />
-            </ScrollView.VerticalOptions>
-            <StackLayout Padding="20" Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
+            </ScrollView.VerticalOptions>-->
+            <StackLayout Padding="10" Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
                                                              PhoneLandscape='150,32',
                                                              TabletPortrait='200,50',
                                                              TabletLandscape='300,50',
                                                              Desktop='30'}"
                 Spacing="0"
-                VerticalOptions="FillAndExpand"
+                
                 WidthRequest="{OnPlatform Default='-1',
                                           UWP='350'}">
                 <ContentView HorizontalOptions="CenterAndExpand">
-                    <Label x:Name="entryUserName"
+                    <Label Text="{Binding CustomerEmail}"
                    TextColor="DodgerBlue" 
                    FontFamily="Arial"
                    FontSize="Medium">
                     </Label>
                 </ContentView>
-                <Label>Product</Label>
-                <border:SfBorder Style="{StaticResource TextBorderStyle}">
-                    <Label BindingContext="{Binding Product}" Style="{StaticResource LockedTextBoxesStyle}"/>
+                <Label Style="{StaticResource LabelStyle}">Product</Label>
+                <border:SfBorder 
+                        IsEnabled="False"
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry                            
+                            HorizontalOptions="Start"
+                            HorizontalTextAlignment="Start"
+                            TextColor="Black"
+                            Style="{StaticResource EntryStyle}"
+                            Text="{Binding Product}" />
                 </border:SfBorder>
-                <Label>Unit Cost</Label>
-                <border:SfBorder Style="{StaticResource TextBorderStyle}">
-                    <Label BindingContext="{Binding UnitCost}" Style="{StaticResource OtherLockedTextBoxesStyle}"/>
+
+                <Label Style="{StaticResource LabelStyle}">Unit Cost</Label>
+                <border:SfBorder
+                        IsEnabled="False"
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                            TextColor="Black"
+                            Style="{StaticResource EntryStyle}"
+                            Text="{Binding UnitCost}" />
                 </border:SfBorder>
-                <Label>Account Balance</Label>
-                <border:SfBorder Style="{StaticResource TextBorderStyle}">
-                    <Label BindingContext="{Binding AccountBalance}" Style="{StaticResource OtherLockedTextBoxesStyle}"/>
+
+                <Label Style="{StaticResource LabelStyle}">Account Balance</Label>
+                <border:SfBorder
+                        IsEnabled="False"
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                            TextColor="Black"
+                            Style="{StaticResource EntryStyle}"
+                            Text="{Binding AccountBalance}" />
                 </border:SfBorder>
-                <!--<Label>Quantity</Label>
-                <telerikInput:RadNumericInput x:Name="inputQuantity"
-                                          Step="0.5"
-                                          Style="{StaticResource LoginEntryStyle}"
-                                          ValueChanged="InputQuantity_ValueChanged" />
-                <Label>Amount</Label>
-                <telerikInput:RadNumericInput x:Name="inputAmount" 
-                                          Step="100"
-                                          Style="{StaticResource LoginEntryStyle}"
-                                          ValueChanged="InputAmount_ValueChanged" 
-                                          StringFormat="N {0:#,##.00}"/>-->
+
+                <Label Style="{StaticResource LabelStyle}">Quantity</Label>
+                <StackLayout>
+                    <numericupdown:SfNumericUpDown />
+                </StackLayout>
+
+                <Label Style="{StaticResource LabelStyle}">Amount</Label>
+                <StackLayout>
+                    <numericupdown:SfNumericUpDown />
+                </StackLayout>
+
                 <!--Grid-->
                 <!--<Grid>
                     <Grid.RowDefinitions>
