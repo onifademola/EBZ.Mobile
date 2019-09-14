@@ -22,11 +22,18 @@ namespace EBZ.Mobile.Android
             ToastConfig.DefaultDuration = TimeSpan.FromSeconds(5.0);
             ToastConfig.DefaultPosition = ToastPosition.Top;
 
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             CachedImageRenderer.Init(true);
             LoadApplication(new App());
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

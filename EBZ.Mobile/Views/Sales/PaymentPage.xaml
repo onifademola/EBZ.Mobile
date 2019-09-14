@@ -90,41 +90,64 @@ xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=
                 </border:SfBorder>
 
                 <Label Style="{StaticResource LabelStyle}">Quantity</Label>
-                <StackLayout>
-                    <numericupdown:SfNumericUpDown />
-                </StackLayout>
+                <border:SfBorder BackgroundColor="{DynamicResource Gray-White}"
+                        Style="{StaticResource SfBorderStyle}">
+                    <numericupdown:SfNumericUpDown x:Name="qtyNum" Minimum="0" StepValue="1" Value="{Binding InputQuantity}" />
+                </border:SfBorder>
 
                 <Label Style="{StaticResource LabelStyle}">Amount</Label>
-                <StackLayout>
-                    <numericupdown:SfNumericUpDown />
-                </StackLayout>
+                <border:SfBorder BackgroundColor="{DynamicResource Gray-White}"
+                        Style="{StaticResource SfBorderStyle}">
+                    <numericupdown:SfNumericUpDown Minimum="0" Value="{Binding InputAmount}" StepValue="500" />
+                </border:SfBorder>
 
                 <!--Grid-->
-                <!--<Grid>
+                <Grid Margin="0,20,0,0">
                     <Grid.RowDefinitions>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.5*" />
                         <ColumnDefinition Width="0.5*" />
-                    </Grid.ColumnDefinitions>
-                    <telerikInput:RadEntry x:Name="entrySalesPin" 
-                                   IsPassword="True"
-                                   IsEnabled="False"
-                                   WatermarkText="Sales Person's PIN"
-                                   Keyboard="Numeric"
-                                   TextChanged="EntrySalesPin_TextChanged"
-                                       Grid.Row="0"
-                                       Grid.Column="0"
-                                   Style="{StaticResource LoginEntryStyle}"/>
-                    <telerikInput:RadButton x:Name="btnVerifySalesPin" Text="Verify PIN"
-                                        TextColor="Red"
-                                        Grid.Row="0"
-                                       Grid.Column="1"
-                                        BackgroundColor="Transparent"
-                                        Style="{StaticResource ActionButtonStyle}"
-                                        Clicked="BtnVerifySalesPin_Clicked"/>
-                </Grid>-->
+                    </Grid.ColumnDefinitions>                    
+                    <border:SfBorder
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        Style="{StaticResource SfBorderStyle}">
+                        <control:BorderlessEntry
+                            TextColor="Black"
+                            IsPassword="True"
+                            IsEnabled="True"
+                            Placeholder="Sales PIN"
+                            PlaceholderColor="Gray"
+                            Keyboard="Numeric"
+                            Style="{StaticResource EntryStyle}"
+                            Text="{Binding InputSalesPin}" />
+                    </border:SfBorder>
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="0"
+                        Grid.Column="1">Sales PIN</Label>
+
+                    <border:SfBorder
+                        Margin="0,10,0,0"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        Style="{StaticResource SfBorderStyle}">
+                        <control:BorderlessEntry
+                            TextColor="Black"
+                            IsPassword="True"
+                            IsEnabled="True"
+                            Placeholder="Customer PIN"
+                            PlaceholderColor="Gray"
+                            Keyboard="Numeric"
+                            Style="{StaticResource EntryStyle}"
+                            Text="{Binding InputCustomerPin}" />
+                    </border:SfBorder>
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="1"
+                        Grid.Column="1">Customer PIN</Label>
+                </Grid>
                 <!--Grid End-->
+                
                 <!--Grid-->
                 <!--<Grid>
                     <Grid.RowDefinitions>
