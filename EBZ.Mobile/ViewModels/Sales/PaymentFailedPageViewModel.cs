@@ -121,14 +121,11 @@ namespace EBZ.Mobile.ViewModels.Sales
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        /// <summary>
-        /// Invoked when the Try again button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
+        
         private void TryAgain(object obj)
         {
             var navServ = App.ViewNavigationService;
-            navServ.ClearModalStack();
+            navServ.GoToRoot();
         }
 
         #endregion

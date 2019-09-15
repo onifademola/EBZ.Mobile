@@ -82,14 +82,7 @@
                 Grid.Row="1"
                 Command="{Binding TryAgainCommand}"
                 Style="{StaticResource SfGradientButtonStyle}"
-                Text="TRY AGAIN" />
-
-            <button:SfButton
-                Grid.Row="2"
-                Clicked="SfButton_Clicked"
-                Style="{StaticResource SfGradientButtonStyle}"
-                Text="Zgo AGAIN" />
-
+                Text="Start a new transaction" />
         </Grid>
 
     </ContentPage.Content>

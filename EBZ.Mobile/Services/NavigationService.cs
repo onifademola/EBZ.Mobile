@@ -98,6 +98,22 @@ namespace EBZ.Mobile.Services
             }
         }
 
+        public void ClearBackStack()
+        {
+            var navigationStack = CurrentNavigationPage.Navigation;
+            if (navigationStack.NavigationStack.Count > 1)
+            {
+                var existingPages = navigationStack.NavigationStack.ToList();
+                foreach (var page in existingPages)
+                {
+                    navigationStack.RemovePage(page);
+                }
+                //var nav = App.ViewNavigationService;
+                //var mainPage = ((NavigationService)nav).SetRootPage("MainPage");
+                //App.Current.MainPage = mainPage;
+            }
+        }
+
         public async Task GoToRoot()
         {
             var navigationStack = CurrentNavigationPage.Navigation;

@@ -45,21 +45,10 @@ namespace EBZ.Mobile.Views.Sales
         protected override bool OnBackButtonPressed()
         {
             //return base.OnBackButtonPressed();
-            //var navServ = App.ViewNavigationService;
-            //navServ.GoBack();
-            //Navigation.PopToRootAsync();
-            //var _navigation = Navigation;
-            //var existingPages = _navigation..NavigationStack.ToList();
-            //foreach (var page in existingPages)
-            //{
-            //    _navigation.RemovePage(page);
-            //}
+            var navServ = App.ViewNavigationService;
+            navServ.ClearModalStack();
             return true;
         }
 
-        private void SfButton_Clicked(object sender, System.EventArgs e)
-        {
-            //Navigation.PopModalAsync();
-        }
     }
 }

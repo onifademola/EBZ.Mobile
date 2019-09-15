@@ -69,7 +69,7 @@ namespace EBZ.Mobile
             ViewNavigationService.Configure("SimpleLoginPage", typeof(Views.Login.SimpleLoginPage));
             ViewNavigationService.Configure("SimpleSignUpPage", typeof(Views.Login.SimpleSignUpPage));
             ViewNavigationService.Configure("SimpleResetPasswordPage", typeof(Views.Login.SimpleResetPasswordPage));
-            ViewNavigationService.Configure("SimpleForgotPasswordPage", typeof(Views.Login.SimpleForgotPasswordPage));
+            ViewNavigationService.Configure("SimpleForgotPasswordPage", typeof(Views.Login.SimpleForgotPasswordPage));            
             ViewNavigationService.Configure("CustomersListPage", typeof(Views.Marketer.CustomersListPage));
             ViewNavigationService.Configure("NewCustomerPage", typeof(Views.Marketer.NewCustomerPage));
             ViewNavigationService.Configure("StartSalesPage", typeof(Views.Sales.StartSalesPage));

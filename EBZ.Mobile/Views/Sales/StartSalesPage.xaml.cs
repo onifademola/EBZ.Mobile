@@ -7,7 +7,7 @@ namespace EBZ.Mobile.Views.Sales
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StartSalesPage : ZXingScannerPage
     {
-        private ZXingScannerPage scanPage;
+        public ZXingScannerPage scanPage;
 
         public StartSalesPage()
         {
@@ -24,17 +24,18 @@ namespace EBZ.Mobile.Views.Sales
                     Device.BeginInvokeOnMainThread(async () =>
                     {
                         Application.Current.Properties["transCustomer"] = result.Text;
-                        await navServ.NavigateModalAsync("SelectProductPage");
+                        await Navigation.PopAsync();
+                        await navServ.NavigateAsync("SelectProductPage");
                     });
                 };
-                await navServ.GoBack();
-                //await Navigation.PushModalAsync(scanPage);
+                //await navServ.GoBack();
+                await Navigation.PushAsync(scanPage);
             };
 
             btnBegin.Clicked += async delegate
             {                
                 Application.Current.Properties["transCustomer"] = "onifademola@gmail.com";
-                await navServ.NavigateModalAsync("SelectProductPage");
+                await navServ.NavigateAsync("SelectProductPage");
             };
         }
     }

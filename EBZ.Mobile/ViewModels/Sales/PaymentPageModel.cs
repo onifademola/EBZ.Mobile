@@ -412,7 +412,7 @@ namespace EBZ.Mobile.ViewModels.Sales
         private async void PayCommandClicked(object obj)
         {
             var navServ = App.ViewNavigationService;
-            await navServ.NavigateModalAsync("PaymentFailedPage");
+            await navServ.NavigateAsync("PaymentFailedPage");
             //_dialogService.ShowLoading("Transacting...");
             //var result = await _salesDataService.PayForProduct(InputSalesPin, CustomerEmail, CustomersPricing.PricingId, CustomersPricing.Cost.Value, CustomersPricing.ProductUom, InputQuantity);
             //if (result != null)

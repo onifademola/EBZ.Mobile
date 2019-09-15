@@ -90,7 +90,7 @@ namespace EBZ.Mobile.ViewModels.Sales
             var customerPricing = obj as CustomerPricing;
             Application.Current.Properties["transSelectedCustomerPricing"] = customerPricing;
             var navServ = App.ViewNavigationService;
-            await navServ.NavigateModalAsync("PaymentPage");
+            await navServ.NavigateAsync("PaymentPage");
         }
     }
 }
