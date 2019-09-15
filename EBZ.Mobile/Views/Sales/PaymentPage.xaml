@@ -123,6 +123,8 @@ xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=
                             PlaceholderColor="Gray"
                             HorizontalOptions="Start"
                             Keyboard="Numeric"
+                            MaxLength="4"
+                            ReturnType="Send"
                             Style="{StaticResource EntryStyle}"
                             Text="{Binding InputSalesPin}" />
                     </border:SfBorder>
@@ -152,11 +154,13 @@ xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=
                         <control:BorderlessEntry
                             TextColor="Black"
                             IsPassword="True"
-                            IsEnabled="True"
+                            IsEnabled="{Binding IsCustomerPinEnable}"
                             Placeholder="Customer PIN"
                             PlaceholderColor="Gray"
                             HorizontalOptions="Start"
                             Keyboard="Numeric"
+                            MaxLength="4"
+                            ReturnType="Send"
                             Style="{StaticResource EntryStyle}"
                             Text="{Binding InputCustomerPin}" />
                     </border:SfBorder>

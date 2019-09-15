@@ -172,16 +172,16 @@
 
 <ItemGroup>
   <Reference Include="ZXing.Net.Mobile.Core">
-    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXing.Net.Mobile.Core.dll</HintPath>
+    <HintPath>..\..\..\Resources\scanner\ZXing.Net.Mobile.Core.dll</HintPath>
   </Reference>
   <Reference Include="ZXing.Net.Mobile.Forms">
-    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXing.Net.Mobile.Forms.dll</HintPath>
+    <HintPath>..\..\..\Resources\scanner\ZXing.Net.Mobile.Forms.dll</HintPath>
   </Reference>
   <Reference Include="zxing.portable">
-    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\zxing.portable.dll</HintPath>
+    <HintPath>..\..\..\Resources\scanner\zxing.portable.dll</HintPath>
   </Reference>
   <Reference Include="ZXingNetMobile">
-    <HintPath>..\..\..\..\..\..\Downloads\Dev19\pcl\ZXingNetMobile.dll</HintPath>
+    <HintPath>..\..\..\Resources\scanner\ZXingNetMobile.dll</HintPath>
   </Reference>
 </ItemGroup>
 

@@ -1,6 +1,5 @@
 ﻿using EBZ.Mobile.Models;
 using EBZ.Mobile.Services;
-using EBZ.Mobile.ViewModels.Login;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -25,6 +24,7 @@ namespace EBZ.Mobile.ViewModels.Sales
         private string _inputCustomerPinVerify;
         private string _inputSalesPinVerifyColor;
         private string _inputCustomerPinVerifyColor;
+        private bool _isCustomerPinEnable;
         private CustomerPricing _customersPricing;
         #endregion
 
@@ -39,7 +39,6 @@ namespace EBZ.Mobile.ViewModels.Sales
         {
             this.PayCommand = new Command(this.PayCommandClicked);
             InitializeData();
-            ManipulateProperties();
         }
 
         #endregion
@@ -151,6 +150,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                 }
                 this._inputSalesPin = value;
                 this.OnPropertyChanged();
+                SalesPinValidation();
             }
         }
         public string InputCustomerPin
@@ -222,6 +222,20 @@ namespace EBZ.Mobile.ViewModels.Sales
                 this.OnPropertyChanged();
             }
         }
+
+        public bool IsCustomerPinEnable
+        {
+            get { return this._isCustomerPinEnable; }
+            set
+            {
+                if(this._isCustomerPinEnable == value)
+                {
+                    return;
+                }
+                this._isCustomerPinEnable = value;
+                this.OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region Command
@@ -234,7 +248,7 @@ namespace EBZ.Mobile.ViewModels.Sales
             SalesPinValidation();
             CustomerPinValidation();
         }
-
+        
         public async void SalesPinValidation()
         {
             //check if pin length is upto 4 characters
@@ -280,6 +294,7 @@ namespace EBZ.Mobile.ViewModels.Sales
                     _dialogService.HideLoading();
                     this.InputSalesPinVerifyColor = "Green";
                     this.InputSalesPinVerify = "Verified";
+                    IsCustomerPinEnable = true;
                     //UserDialogs.Instance.HideLoading();
                     //entrySalesPin.IsEnabled = false;
 
@@ -305,6 +320,8 @@ namespace EBZ.Mobile.ViewModels.Sales
             this.InputSalesPinVerify = "Unverified";
             this.InputCustomerPinVerifyColor = "Red";           
             this.InputCustomerPinVerify = "Unverified";
+
+            IsCustomerPinEnable = false;
 
             if (Application.Current.Properties.ContainsKey("transSelectedCustomerPricing"))
             {
