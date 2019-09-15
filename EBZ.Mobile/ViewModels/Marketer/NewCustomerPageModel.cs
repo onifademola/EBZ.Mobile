@@ -153,35 +153,11 @@ namespace EBZ.Mobile.ViewModels.Marketer
         #endregion
 
         #region Command
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the Log In button is clicked.
-        /// </summary>
-        public Command LoginCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the Sign Up button is clicked.
-        /// </summary>
         public Command CreateCommand { get; set; }
-
         #endregion
 
         #region Methods
 
-        /// <summary>
-        /// Invoked when the Log in button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void LoginClicked(object obj)
-        {
-            var viewNAvServ = App.ViewNavigationService;
-            var mainPage = ((NavigationService)viewNAvServ).NavigateModalAsync("SimpleLoginPage");
-        }
-
-        /// <summary>
-        /// Invoked when the Sign Up button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
         private async void CreateClicked(object obj)
         {
             if (Email.Equals(string.Empty) || Password.Equals(string.Empty) || Phone.Equals(string.Empty))

@@ -108,7 +108,7 @@ xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.5*" />
                         <ColumnDefinition Width="0.5*" />
-                    </Grid.ColumnDefinitions>                    
+                    </Grid.ColumnDefinitions>
                     <border:SfBorder
                         Margin="0,10,0,0"
                         Grid.Row="0"
@@ -121,14 +121,17 @@ xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=
                             IsEnabled="True"
                             Placeholder="Sales PIN"
                             PlaceholderColor="Gray"
+                            HorizontalOptions="Start"
                             Keyboard="Numeric"
                             Style="{StaticResource EntryStyle}"
                             Text="{Binding InputSalesPin}" />
                     </border:SfBorder>
                     <Label Style="{StaticResource LabelStyle}" 
-                           Margin="0,10,0,0"
+                           TextColor="{Binding InputSalesPinVerifyColor}"
+                           Text="{Binding InputSalesPinVerify}"
+                           Margin="0,20,0,0"
                            Grid.Row="0"
-                           Grid.Column="1">Sales PIN</Label>
+                           Grid.Column="1"></Label>
                 </Grid>
                 <!--Grid End-->
 
@@ -152,22 +155,25 @@ xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=
                             IsEnabled="True"
                             Placeholder="Customer PIN"
                             PlaceholderColor="Gray"
+                            HorizontalOptions="Start"
                             Keyboard="Numeric"
                             Style="{StaticResource EntryStyle}"
                             Text="{Binding InputCustomerPin}" />
                     </border:SfBorder>
                     <Label Style="{StaticResource LabelStyle}" 
-                           Margin="0,10,0,0"
+                           TextColor="{Binding InputCustomerPinVerifyColor}"
+                           Text="{Binding InputCustomerPinVerify}"
+                           Margin="0,20,0,0"
                            Grid.Row="0"
-                           Grid.Column="1">Customer PIN</Label>
+                           Grid.Column="1"></Label>
                 </Grid>
                 <!--Grid End-->
-
-                <buttons:SfButton
-                        Command="{Binding SignUpCommand}"
-                        CornerRadius="4"
-                        Style="{StaticResource SfFlatButtonStyle}"
-                        Text="PAY" />
+                <StackLayout Margin="0,20,0,0">
+                    <buttons:SfButton 
+                        Command="{Binding PayCommand}"
+                        Text="PAY"
+                        Style="{StaticResource SfCButtonStyle}"/>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

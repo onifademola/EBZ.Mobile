@@ -9,18 +9,14 @@ using Xamarin.Forms.Xaml;
 
 namespace EBZ.Mobile.Views.Marketer
 {
-    /// <summary>
-    /// Page to sign in with user details.
-    /// </summary>
+
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewCustomerPage
     {
         DateModel _dateModel = new DateModel();
         CustomerDataService _customerDataService = new CustomerDataService();
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SimpleSignUpPage" /> class.
-        /// </summary>
+
         public NewCustomerPage()
         {
             this.InitializeComponent();

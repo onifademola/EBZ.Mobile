@@ -1,6 +1,7 @@
 ﻿using EBZ.Mobile.Models;
 using EBZ.Mobile.Services;
 using EBZ.Mobile.ViewModels.Login;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
@@ -8,9 +9,6 @@ using Xamarin.Forms.Internals;
 
 namespace EBZ.Mobile.ViewModels.Sales
 {
-    /// <summary>
-    /// ViewModel for sign-up page.
-    /// </summary>
     [Preserve(AllMembers = true)]
     public class PaymentPageModel : INotifyPropertyChanged
     {
@@ -25,6 +23,8 @@ namespace EBZ.Mobile.ViewModels.Sales
         private string _inputCustomerPin;
         private string _inputSalesPinVerify;
         private string _inputCustomerPinVerify;
+        private string _inputSalesPinVerifyColor;
+        private string _inputCustomerPinVerifyColor;
         private CustomerPricing _customersPricing;
         #endregion
 
@@ -37,6 +37,7 @@ namespace EBZ.Mobile.ViewModels.Sales
         
         public PaymentPageModel()
         {
+            this.PayCommand = new Command(this.PayCommandClicked);
             InitializeData();
         }
 
@@ -193,28 +194,48 @@ namespace EBZ.Mobile.ViewModels.Sales
             }
         }
 
+        public string InputSalesPinVerifyColor
+        {
+            get { return this._inputSalesPinVerifyColor; }
+            set
+            {
+                if (this._inputSalesPinVerifyColor == value)
+                {
+                    return;
+                }
+                this._inputSalesPinVerifyColor = value;
+                this.OnPropertyChanged();
+            }
+        }
 
+        public string InputCustomerPinVerifyColor
+        {
+            get { return this._inputCustomerPinVerifyColor; }
+            set
+            {
+                if (this._inputCustomerPinVerifyColor == value)
+                {
+                    return;
+                }
+                this._inputCustomerPinVerifyColor = value;
+                this.OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region Command
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the Log In button is clicked.
-        /// </summary>
-        public Command LoginCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the Sign Up button is clicked.
-        /// </summary>
-        public Command CreateCommand { get; set; }
-
-
+        public Command PayCommand { get; set; }
         #endregion
 
         #region Methods
 
         private void InitializeData()
         {
+            this.InputCustomerPinVerifyColor = "Red";
+            this.InputSalesPinVerifyColor = "Red";
+            this.InputSalesPinVerify = "Unverified";
+            this.InputCustomerPinVerify = "Unverified";
+
             if (Application.Current.Properties.ContainsKey("transSelectedCustomerPricing"))
             {
                 _customersPricing = (CustomerPricing)Application.Current.Properties["transSelectedCustomerPricing"];
@@ -236,6 +257,10 @@ namespace EBZ.Mobile.ViewModels.Sales
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void PayCommandClicked(object obj)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }
