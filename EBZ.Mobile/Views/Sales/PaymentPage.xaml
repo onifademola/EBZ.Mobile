@@ -92,13 +92,13 @@ xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=
                 <Label Style="{StaticResource LabelStyle}">Quantity</Label>
                 <border:SfBorder BackgroundColor="{DynamicResource Gray-White}"
                         Style="{StaticResource SfBorderStyle}">
-                    <numericupdown:SfNumericUpDown x:Name="qtyNum" Minimum="0" StepValue="1" Value="{Binding InputQuantity}" />
+                    <numericupdown:SfNumericUpDown x:Name="qtyNum" Minimum="0" StepValue="1" Value="{Binding InputQuantity}" IsEnabled="{Binding IsBuyInputEnabled}"/>
                 </border:SfBorder>
 
                 <Label Style="{StaticResource LabelStyle}">Amount</Label>
                 <border:SfBorder BackgroundColor="{DynamicResource Gray-White}"
                         Style="{StaticResource SfBorderStyle}">
-                    <numericupdown:SfNumericUpDown Minimum="0" Value="{Binding InputAmount}" StepValue="500" />
+                    <numericupdown:SfNumericUpDown Minimum="0" Value="{Binding InputAmount}" StepValue="500" IsEnabled="{Binding IsBuyInputEnabled}"/>
                 </border:SfBorder>
 
                 <!--Grid-->
@@ -118,7 +118,7 @@ xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=
                         <control:BorderlessEntry
                             TextColor="Black"
                             IsPassword="True"
-                            IsEnabled="True"
+                            IsEnabled="{Binding IsSalesPinEnabled}"
                             Placeholder="Sales PIN"
                             PlaceholderColor="Gray"
                             HorizontalOptions="Start"
@@ -154,7 +154,7 @@ xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=
                         <control:BorderlessEntry
                             TextColor="Black"
                             IsPassword="True"
-                            IsEnabled="{Binding IsCustomerPinEnable}"
+                            IsEnabled="{Binding IsCustomerPinEnabled}"
                             Placeholder="Customer PIN"
                             PlaceholderColor="Gray"
                             HorizontalOptions="Start"
@@ -176,6 +176,7 @@ xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=
                     <buttons:SfButton 
                         Command="{Binding PayCommand}"
                         Text="PAY"
+                        IsEnabled="{Binding IsPayBtnEnabled}"
                         Style="{StaticResource SfCButtonStyle}"/>
                 </StackLayout>
             </StackLayout>

@@ -27,6 +27,7 @@ namespace EBZ.Mobile.ViewModels.Sales
         private bool _isSalesPinEnabled;
         private bool _isCustomerPinEnabled;
         private bool _isPayBtnEnabled;
+        private bool _isBuyInputEnabled;
         private CustomerPricing _customersPricing;
         #endregion
 
@@ -269,6 +270,20 @@ namespace EBZ.Mobile.ViewModels.Sales
                 this.OnPropertyChanged();
             }
         }
+
+        public bool IsBuyInputEnabled
+        {
+            get { return this._isBuyInputEnabled; }
+            set
+            {
+                if(this._isBuyInputEnabled == value)
+                {
+                    return;
+                }
+                this._isBuyInputEnabled = value;
+                this.OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region Command
@@ -290,8 +305,9 @@ namespace EBZ.Mobile.ViewModels.Sales
                     _dialogService.HideLoading();
                     this.InputSalesPinVerifyColor = "Green";
                     this.InputSalesPinVerify = "Verified";
-                    this.IsSalesPinEnabled = false;
-                    this.IsCustomerPinEnabled = true;
+                    IsSalesPinEnabled = false;
+                    IsBuyInputEnabled = false;
+                    IsCustomerPinEnabled = true;
                 }
                 else
                 {
@@ -335,6 +351,7 @@ namespace EBZ.Mobile.ViewModels.Sales
             IsCustomerPinEnabled = false;
             IsSalesPinEnabled = false;
             IsPayBtnEnabled = false;
+            IsBuyInputEnabled = true;
 
             if (Application.Current.Properties.ContainsKey("transSelectedCustomerPricing"))
             {
@@ -367,6 +384,8 @@ namespace EBZ.Mobile.ViewModels.Sales
 
         private void InputQuantityValueChanged()
         {
+            if (InputQuantity == 0)
+                IsSalesPinEnabled = false;
             InputAmount = InputQuantity * CustomersPricing.Cost.Value;
             IsCustomerBalanceEnough(InputAmount);
         }
@@ -377,7 +396,6 @@ namespace EBZ.Mobile.ViewModels.Sales
             {
                 _dialogService.ShowToast("Customer balance is not enough for this transaction.");
                 InputQuantity = 0;
-                //InputAmount = 0;
             }
             else
             {
