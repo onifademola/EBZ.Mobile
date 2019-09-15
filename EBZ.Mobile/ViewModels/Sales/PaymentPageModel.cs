@@ -33,12 +33,13 @@ namespace EBZ.Mobile.ViewModels.Sales
         DialogService _dialogService = new DialogService();
         AuthenticationService _authenticationService = new AuthenticationService();
         SettingsService _settingsService = new SettingsService();
-
+        SalesDataService _salesDataService = new SalesDataService();
         
         public PaymentPageModel()
         {
             this.PayCommand = new Command(this.PayCommandClicked);
             InitializeData();
+            ManipulateProperties();
         }
 
         #endregion
@@ -228,12 +229,81 @@ namespace EBZ.Mobile.ViewModels.Sales
         #endregion
 
         #region Methods
+        public void ManipulateProperties()
+        {
+            SalesPinValidation();
+            CustomerPinValidation();
+        }
+
+        public async void SalesPinValidation()
+        {
+            //check if pin length is upto 4 characters
+            if (this.InputSalesPin != null && this.InputSalesPin.Length == 4)
+            {
+                //start to verify pin
+                _dialogService.ShowLoading("Verifying...");
+                var result = await _salesDataService.ValidateSalesPin(this.InputSalesPin);
+                if (result != null)
+                {
+                    _dialogService.HideLoading();
+                    this.InputSalesPinVerifyColor = "Green";
+                    this.InputSalesPinVerify = "Verified";
+                    //UserDialogs.Instance.HideLoading();
+                    //entrySalesPin.IsEnabled = false;
+
+                    //btnVerifySalesPin.Text = "Verified";
+                    //btnVerifySalesPin.TextColor = Color.ForestGreen;
+                    //btnVerifySalesPin.IsEnabled = false;
+
+                    //entryCustomerPin.IsEnabled = true;
+                    //entryCustomerPin.Focus();
+                }
+                else
+                {
+                    _dialogService.HideLoading();
+                    _dialogService.ShowToast("Sorry! Sales PIN is NOT correct. Please try again.");
+                    //entrySalesPin.Focus();
+                }
+            }
+        }
+
+        public async void CustomerPinValidation()
+        {
+            //check if pin length is upto 4 characters
+            if (this.InputCustomerPin != null && this.InputCustomerPin.Length == 4)
+            {
+                //start to verify pin
+                _dialogService.ShowLoading("Verifying...");
+                var result = await _salesDataService.ValidateCustomersPin(CustomerEmail, this.InputCustomerPin);
+                if (result != null)
+                {
+                    _dialogService.HideLoading();
+                    this.InputSalesPinVerifyColor = "Green";
+                    this.InputSalesPinVerify = "Verified";
+                    //UserDialogs.Instance.HideLoading();
+                    //entrySalesPin.IsEnabled = false;
+
+                    //btnVerifySalesPin.Text = "Verified";
+                    //btnVerifySalesPin.TextColor = Color.ForestGreen;
+                    //btnVerifySalesPin.IsEnabled = false;
+
+                    //entryCustomerPin.IsEnabled = true;
+                    //entryCustomerPin.Focus();
+                }
+                else
+                {
+                    _dialogService.HideLoading();
+                    _dialogService.ShowToast("Sorry! Customer PIN is NOT correct. Please try again.");
+                    //entrySalesPin.Focus();
+                }
+            }
+        }
 
         private void InitializeData()
         {
-            this.InputCustomerPinVerifyColor = "Red";
             this.InputSalesPinVerifyColor = "Red";
             this.InputSalesPinVerify = "Unverified";
+            this.InputCustomerPinVerifyColor = "Red";           
             this.InputCustomerPinVerify = "Unverified";
 
             if (Application.Current.Properties.ContainsKey("transSelectedCustomerPricing"))

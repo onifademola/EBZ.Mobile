@@ -20,7 +20,7 @@ namespace EBZ.Mobile.Android
 
             UserDialogs.Init(this);
             ToastConfig.DefaultDuration = TimeSpan.FromSeconds(5.0);
-            ToastConfig.DefaultPosition = ToastPosition.Top;
+            ToastConfig.DefaultPosition = ToastPosition.Bottom;
 
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
