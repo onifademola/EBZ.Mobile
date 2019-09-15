@@ -409,9 +409,40 @@ namespace EBZ.Mobile.ViewModels.Sales
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void PayCommandClicked(object obj)
+        private async void PayCommandClicked(object obj)
         {
-            throw new NotImplementedException();
+            var navServ = App.ViewNavigationService;
+            await navServ.NavigateModalAsync("PaymentFailedPage");
+            //_dialogService.ShowLoading("Transacting...");
+            //var result = await _salesDataService.PayForProduct(InputSalesPin, CustomerEmail, CustomersPricing.PricingId, CustomersPricing.Cost.Value, CustomersPricing.ProductUom, InputQuantity);
+            //if (result != null)
+            //{
+            //    _dialogService.HideLoading();
+            //    var response = await DisplayAlert("Successful Transaction", "Payment was successfully completed.", "Ok", "Cancel");
+            //    if (response == true)
+            //    {
+            //        await Navigation.PopModalAsync();
+            //    }
+            //    else
+            //    {
+            //        //await Navigation.PopModalAsync();
+            //        var navServ = App.ViewNavigationService;
+            //        await navServ.NavigateModalAsync("NewCustomerPage");
+            //    }
+            //}
+            //else
+            //{
+            //    _dialogService.HideLoading();
+            //    var response = await DisplayAlert("Failed Transaction", "Unable to complete payment, please try another transaction.", "Ok", "Cancel");
+            //    if (response == true)
+            //    {
+            //        await Navigation.PopModalAsync();
+            //    }
+            //    else
+            //    {
+            //        await Navigation.PopModalAsync();
+            //    }
+            //}
         }
         #endregion
     }

@@ -18,7 +18,7 @@ namespace EBZ.Mobile.Services
         //public Dictionary<string, Type> savedPagesKey;
         
         private NavigationPage CurrentNavigationPage => _navigationPageStack.Peek();
-
+        
         public void Configure(string pageKey, Type pageType)
         {
             lock (_sync)
@@ -83,6 +83,25 @@ namespace EBZ.Mobile.Services
             }
 
             await CurrentNavigationPage.PopAsync();
+        }
+
+        public async Task ClearModalStack()
+        {
+            var navigationStack = CurrentNavigationPage.Navigation;
+            if (navigationStack.ModalStack.Count > 1)
+            {
+                var existingPages = navigationStack.ModalStack.ToList();
+                foreach (var page in existingPages)
+                {
+                    await navigationStack.PopModalAsync();
+                }            
+            }
+        }
+
+        public async Task GoToRoot()
+        {
+            var navigationStack = CurrentNavigationPage.Navigation;
+            await navigationStack.PopToRootAsync();
         }
 
         public async Task NavigateModalAsync(string pageKey, bool animated = true)

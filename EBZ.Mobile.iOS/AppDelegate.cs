@@ -1,3 +1,5 @@
+using Syncfusion.XForms.iOS.Core;
+using Syncfusion.XForms.iOS.Graphics;
 using FFImageLoading.Forms.Platform;
 using System;
 using System.Collections.Generic;
@@ -58,6 +60,7 @@ namespace EBZ.Mobile.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Core.Init();
             CachedImageRenderer.Init();
             SfGradientViewRenderer.Init();
             

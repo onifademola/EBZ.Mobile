@@ -20,9 +20,16 @@ namespace EBZ.Mobile.Views.Sales
         protected override bool OnBackButtonPressed()
         {
             //return base.OnBackButtonPressed();
-            var navServ = App.ViewNavigationService;
-            navServ.GoBack();
+            //var navServ = App.ViewNavigationService;
+            //navServ.GoBack();
+            Navigation.PopToRootAsync();
             return true;
         }
+
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    Navigation.po();
+        //}
     }
 }
