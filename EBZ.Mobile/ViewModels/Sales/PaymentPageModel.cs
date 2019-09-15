@@ -16,15 +16,17 @@ namespace EBZ.Mobile.ViewModels.Sales
         private string _product;
         private string _unitCost;
         private string _accountBalance;
-        private string _inputQuantity;
-        private string _inputAmount;
+        private double _inputQuantity;
+        private double _inputAmount;
         private string _inputSalesPin;
         private string _inputCustomerPin;
         private string _inputSalesPinVerify;
         private string _inputCustomerPinVerify;
         private string _inputSalesPinVerifyColor;
         private string _inputCustomerPinVerifyColor;
-        private bool _isCustomerPinEnable;
+        private bool _isSalesPinEnabled;
+        private bool _isCustomerPinEnabled;
+        private bool _isPayBtnEnabled;
         private CustomerPricing _customersPricing;
         #endregion
 
@@ -34,7 +36,7 @@ namespace EBZ.Mobile.ViewModels.Sales
         AuthenticationService _authenticationService = new AuthenticationService();
         SettingsService _settingsService = new SettingsService();
         SalesDataService _salesDataService = new SalesDataService();
-        
+
         public PaymentPageModel()
         {
             this.PayCommand = new Command(this.PayCommandClicked);
@@ -50,7 +52,7 @@ namespace EBZ.Mobile.ViewModels.Sales
             get { return this._customersPricing; }
             set
             {
-                if(this._customersPricing == value)
+                if (this._customersPricing == value)
                 {
                     return;
                 }
@@ -63,7 +65,7 @@ namespace EBZ.Mobile.ViewModels.Sales
         {
             get { return _product; }
             set
-            {                
+            {
                 _product = value;
                 OnPropertyChanged();
             }
@@ -88,7 +90,7 @@ namespace EBZ.Mobile.ViewModels.Sales
             get { return this._unitCost; }
             set
             {
-                if(this._unitCost == value)
+                if (this._unitCost == value)
                 {
                     return;
                 }
@@ -102,7 +104,7 @@ namespace EBZ.Mobile.ViewModels.Sales
             get { return this._accountBalance; }
             set
             {
-                if(this._accountBalance == value)
+                if (this._accountBalance == value)
                 {
                     return;
                 }
@@ -111,31 +113,33 @@ namespace EBZ.Mobile.ViewModels.Sales
             }
         }
 
-        public string InputQuantity
+        public double InputQuantity
         {
             get { return this._inputQuantity; }
             set
             {
-                if(this._inputQuantity == value)
+                if (this._inputQuantity == value)
                 {
                     return;
                 }
                 this._inputQuantity = value;
                 this.OnPropertyChanged();
+                InputQuantityValueChanged();
             }
         }
 
-        public string InputAmount
+        public double InputAmount
         {
             get { return this._inputAmount; }
             set
             {
-                if(this._inputAmount == value)
+                if (this._inputAmount == value)
                 {
                     return;
                 }
                 this._inputAmount = value;
                 this.OnPropertyChanged();
+                InputAmountValueChanged();
             }
         }
 
@@ -158,12 +162,13 @@ namespace EBZ.Mobile.ViewModels.Sales
             get { return this._inputCustomerPin; }
             set
             {
-                if(this._inputCustomerPin == value)
+                if (this._inputCustomerPin == value)
                 {
                     return;
                 }
                 this._inputCustomerPin = value;
                 this.OnPropertyChanged();
+                CustomerPinValidation();
             }
         }
 
@@ -172,7 +177,7 @@ namespace EBZ.Mobile.ViewModels.Sales
             get { return this._inputSalesPinVerify; }
             set
             {
-                if(this._inputSalesPinVerify == value)
+                if (this._inputSalesPinVerify == value)
                 {
                     return;
                 }
@@ -186,7 +191,7 @@ namespace EBZ.Mobile.ViewModels.Sales
             get { return this._inputCustomerPinVerify; }
             set
             {
-                if(this._inputCustomerPinVerify == value)
+                if (this._inputCustomerPinVerify == value)
                 {
                     return;
                 }
@@ -223,16 +228,44 @@ namespace EBZ.Mobile.ViewModels.Sales
             }
         }
 
-        public bool IsCustomerPinEnable
+        public bool IsSalesPinEnabled
         {
-            get { return this._isCustomerPinEnable; }
+            get { return this._isSalesPinEnabled; }
             set
             {
-                if(this._isCustomerPinEnable == value)
+                if (this._isSalesPinEnabled == value)
                 {
                     return;
                 }
-                this._isCustomerPinEnable = value;
+                this._isSalesPinEnabled = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool IsCustomerPinEnabled
+        {
+            get { return this._isCustomerPinEnabled; }
+            set
+            {
+                if (this._isCustomerPinEnabled == value)
+                {
+                    return;
+                }
+                this._isCustomerPinEnabled = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool IsPayBtnEnabled
+        {
+            get { return this._isPayBtnEnabled; }
+            set
+            {
+                if(this._isPayBtnEnabled == value)
+                {
+                    return;
+                }
+                this._isPayBtnEnabled = value;
                 this.OnPropertyChanged();
             }
         }
@@ -243,11 +276,6 @@ namespace EBZ.Mobile.ViewModels.Sales
         #endregion
 
         #region Methods
-        public void ManipulateProperties()
-        {
-            SalesPinValidation();
-            CustomerPinValidation();
-        }
         
         public async void SalesPinValidation()
         {
@@ -262,21 +290,13 @@ namespace EBZ.Mobile.ViewModels.Sales
                     _dialogService.HideLoading();
                     this.InputSalesPinVerifyColor = "Green";
                     this.InputSalesPinVerify = "Verified";
-                    //UserDialogs.Instance.HideLoading();
-                    //entrySalesPin.IsEnabled = false;
-
-                    //btnVerifySalesPin.Text = "Verified";
-                    //btnVerifySalesPin.TextColor = Color.ForestGreen;
-                    //btnVerifySalesPin.IsEnabled = false;
-
-                    //entryCustomerPin.IsEnabled = true;
-                    //entryCustomerPin.Focus();
+                    this.IsSalesPinEnabled = false;
+                    this.IsCustomerPinEnabled = true;
                 }
                 else
                 {
                     _dialogService.HideLoading();
                     _dialogService.ShowToast("Sorry! Sales PIN is NOT correct. Please try again.");
-                    //entrySalesPin.Focus();
                 }
             }
         }
@@ -292,24 +312,15 @@ namespace EBZ.Mobile.ViewModels.Sales
                 if (result != null)
                 {
                     _dialogService.HideLoading();
-                    this.InputSalesPinVerifyColor = "Green";
-                    this.InputSalesPinVerify = "Verified";
-                    IsCustomerPinEnable = true;
-                    //UserDialogs.Instance.HideLoading();
-                    //entrySalesPin.IsEnabled = false;
-
-                    //btnVerifySalesPin.Text = "Verified";
-                    //btnVerifySalesPin.TextColor = Color.ForestGreen;
-                    //btnVerifySalesPin.IsEnabled = false;
-
-                    //entryCustomerPin.IsEnabled = true;
-                    //entryCustomerPin.Focus();
+                    this.InputCustomerPinVerifyColor = "Green";
+                    this.InputCustomerPinVerify = "Verified";
+                    IsCustomerPinEnabled = false;
+                    IsPayBtnEnabled = true;
                 }
                 else
                 {
                     _dialogService.HideLoading();
                     _dialogService.ShowToast("Sorry! Customer PIN is NOT correct. Please try again.");
-                    //entrySalesPin.Focus();
                 }
             }
         }
@@ -321,7 +332,9 @@ namespace EBZ.Mobile.ViewModels.Sales
             this.InputCustomerPinVerifyColor = "Red";           
             this.InputCustomerPinVerify = "Unverified";
 
-            IsCustomerPinEnable = false;
+            IsCustomerPinEnabled = false;
+            IsSalesPinEnabled = false;
+            IsPayBtnEnabled = false;
 
             if (Application.Current.Properties.ContainsKey("transSelectedCustomerPricing"))
             {
@@ -335,6 +348,40 @@ namespace EBZ.Mobile.ViewModels.Sales
                 this.Product = _customersPricing.ProductName;
                 this.UnitCost = _customersPricing.CostView;
                 this.AccountBalance = _customersPricing.CustomerBalanceView;
+            }
+        }
+
+        private void InputAmountValueChanged()
+        {
+            if (InputAmount > CustomersPricing.CustomerBalance)
+            {
+                _dialogService.ShowToast("Customer balance is not enough for this transaction.");
+                InputAmount = 0;
+            }
+            else
+            {
+                InputQuantity = InputAmount / CustomersPricing.Cost.Value;
+                IsSalesPinEnabled = true;
+            }
+        }
+
+        private void InputQuantityValueChanged()
+        {
+            InputAmount = InputQuantity * CustomersPricing.Cost.Value;
+            IsCustomerBalanceEnough(InputAmount);
+        }
+
+        private void IsCustomerBalanceEnough(double newValue)
+        {
+            if (CustomersPricing.CustomerBalance < newValue)
+            {
+                _dialogService.ShowToast("Customer balance is not enough for this transaction.");
+                InputQuantity = 0;
+                //InputAmount = 0;
+            }
+            else
+            {
+                IsSalesPinEnabled = true;
             }
         }
 
