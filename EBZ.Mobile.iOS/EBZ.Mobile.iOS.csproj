@@ -161,4 +161,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\PaymentFailed.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EmptyCart.svg" />
+  </ItemGroup>
 </Project>

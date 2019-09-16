@@ -109,7 +109,7 @@ namespace EBZ.Mobile.ViewModels.Marketer
             if (_userService.IsAuthenticated())
             {
                 _dialogService.ShowLoading("Loading...");
-                var custs = await customerDataService.GetCustomersForMarketer(_userService.LoggedInUser());
+                var custs = await customerDataService.GetCustomersForMarketer(_settingsService.UserNameSetting);
                 if (custs != null)
                 {
                     Customers = custs.ToObservableCollection();

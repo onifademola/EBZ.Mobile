@@ -21,6 +21,9 @@ namespace EBZ.Mobile.Android
             UserDialogs.Init(this);
             ToastConfig.DefaultDuration = TimeSpan.FromSeconds(5.0);
             ToastConfig.DefaultPosition = ToastPosition.Bottom;
+            ToastConfig.DefaultBackgroundColor = Xamarin.Forms.Color.DarkRed; //.FromHex("#012E8B"); //System.Drawing.Design( "#012E8B");
+            ToastConfig.DefaultMessageTextColor = Xamarin.Forms.Color.White;
+            ToastConfig.DefaultActionTextColor = Xamarin.Forms.Color.DarkSlateGray;
 
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
