@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FastAndroidCamera">
-      <HintPath>..\..\..\..\..\..\Downloads\Dev19\and\FastAndroidCamera.dll</HintPath>
+      <HintPath>..\..\..\Resources\scanner\android\FastAndroidCamera.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
@@ -54,19 +54,19 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="ZXing.Net.Mobile.Core">
-      <HintPath>..\..\..\..\..\..\Downloads\Dev19\and\ZXing.Net.Mobile.Core.dll</HintPath>
+      <HintPath>..\..\..\Resources\scanner\android\ZXing.Net.Mobile.Core.dll</HintPath>
     </Reference>
     <Reference Include="ZXing.Net.Mobile.Forms">
-      <HintPath>..\..\..\..\..\..\Downloads\Dev19\and\ZXing.Net.Mobile.Forms.dll</HintPath>
+      <HintPath>..\..\..\Resources\scanner\android\ZXing.Net.Mobile.Forms.dll</HintPath>
     </Reference>
     <Reference Include="ZXing.Net.Mobile.Forms.Android">
-      <HintPath>..\..\..\..\..\..\Downloads\Dev19\and\ZXing.Net.Mobile.Forms.Android.dll</HintPath>
+      <HintPath>..\..\..\Resources\scanner\android\ZXing.Net.Mobile.Forms.Android.dll</HintPath>
     </Reference>
     <Reference Include="zxing.portable">
-      <HintPath>..\..\..\..\..\..\Downloads\Dev19\and\zxing.portable.dll</HintPath>
+      <HintPath>..\..\..\Resources\scanner\android\zxing.portable.dll</HintPath>
     </Reference>
     <Reference Include="ZXingNetMobile">
-      <HintPath>..\..\..\..\..\..\Downloads\Dev19\and\ZXingNetMobile.dll</HintPath>
+      <HintPath>..\..\..\Resources\scanner\android\ZXingNetMobile.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

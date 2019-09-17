@@ -2,12 +2,14 @@
 <ContentPage
     x:Class="EBZ.Mobile.Views.User.ProfilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.XamarinForms.Barcode"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EBZ.Mobile.Controls"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:viewModel="clr-namespace:EBZ.Mobile.ViewModels.User"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfBarcode.XForms;assembly=Syncfusion.SfBarcode.XForms"
     BackgroundColor="{DynamicResource Gray-F4}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
@@ -103,7 +105,7 @@
                         Grid.Column="2"
                         Margin="8,0"
                         Padding="0"
-                        Command="{Binding EditCommand}"
+                        Command="{Binding SettingsCommand}"
                         HeightRequest="32"
                         Style="{StaticResource ProfileButtonStyle}"
                         Text="{StaticResource Edit}"
@@ -170,7 +172,7 @@
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for Text size label and navigation bar icon  -->
-                <Grid x:Name="TextSizeGrid" BackgroundColor="{DynamicResource Gray-White}">
+                <!--<Grid x:Name="TextSizeGrid" BackgroundColor="{DynamicResource Gray-White}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -178,44 +180,51 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding TextSizeCommand}" CommandParameter="{x:Reference TextSizeGrid}" />
+                        <TapGestureRecognizer Command="{Binding CustomerCommand}" CommandParameter="{x:Reference TextSizeGrid}" />
                     </Grid.GestureRecognizers>
 
-                    <!--  Text size label  -->
-                    <Label Style="{StaticResource ProfileLabelStyle}" Text="Text Size" />
+                    --><!--  Text size label  --><!--
+                    <Label Style="{StaticResource ProfileLabelStyle}" Text="My Customers" />
 
-                    <!--  Text size navigation icon  -->
+                    --><!--  Text size navigation icon  --><!--
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource ProfileIconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </Grid>
 
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />-->
 
                 <!--  Grid for Settings label and navigation bar icon  -->
-                <Grid x:Name="SettingsGrid" BackgroundColor="{DynamicResource Gray-White}">
+                <!--<Grid x:Name="SettingsGrid" BackgroundColor="{DynamicResource Gray-White}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SettingsCommand}" CommandParameter="{x:Reference SettingsGrid}" />
+                        <TapGestureRecognizer Command="{Binding SalesCommand}" CommandParameter="{x:Reference SettingsGrid}" />
                     </Grid.GestureRecognizers>
 
-                    <!--  Settings Label  -->
-                    <Label Style="{StaticResource ProfileLabelStyle}" Text="Settings" />
+                    --><!--  Settings Label  --><!--
+                    <Label Style="{StaticResource ProfileLabelStyle}" Text="Sell A Product" />
 
-                    <!--  Settings navigation icon  -->
+                    --><!--  Settings navigation icon  --><!--
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource ProfileIconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </Grid>
 
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />-->
 
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
+                    <syncfusion:SfBarcode BackgroundColor="{DynamicResource Gray-White}" Text="{Binding Email}" Symbology="QRCode" HorizontalOptions="Fill" VerticalOptions="Fill">
+                        <syncfusion:SfBarcode.SymbologySettings>
+                            <syncfusion:QRBarcodeSettings XDimension="12"/>
+                        </syncfusion:SfBarcode.SymbologySettings>
+                    </syncfusion:SfBarcode>
+                </Grid>
             </StackLayout>
 
         </ScrollView>

@@ -14,8 +14,8 @@ namespace EBZ.Mobile
             var shop = new Views.Sales.StartSalesPage();
             shop.Title = "Shop";
 
-            //var transactionsPage = new UserView.Transactions();
-            //transactionsPage.Title = "Txs";
+            var userPage = new Views.User.ProfilePage();
+            //userPage.Title = "Txs";
 
             //var rechargesPage = new UserView.Recharges();
             //rechargesPage.Title = "Rxs";
@@ -28,6 +28,7 @@ namespace EBZ.Mobile
             //{
             //    Children.Add(marketersPage);
             //}
+            Children.Add(userPage);
             Children.Add(marketersPage);
             Children.Add(shop);
             //Children.Add(rechargesPage);

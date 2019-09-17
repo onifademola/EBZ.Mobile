@@ -66,6 +66,7 @@ namespace EBZ.Mobile
         public void RegisterViews()
         {
             ViewNavigationService.Configure("MainPage", typeof(MainPage));
+            ViewNavigationService.Configure("ProfilePage", typeof(Views.User.ProfilePage));
             ViewNavigationService.Configure("SimpleLoginPage", typeof(Views.Login.SimpleLoginPage));
             ViewNavigationService.Configure("SimpleSignUpPage", typeof(Views.Login.SimpleSignUpPage));
             ViewNavigationService.Configure("SimpleResetPasswordPage", typeof(Views.Login.SimpleResetPasswordPage));
@@ -77,6 +78,7 @@ namespace EBZ.Mobile
             ViewNavigationService.Configure("PaymentPage", typeof(Views.Sales.PaymentPage));
             ViewNavigationService.Configure("PaymentFailedPage", typeof(Views.Sales.PaymentFailedPage));
             ViewNavigationService.Configure("PaymentSuccessfulPage", typeof(Views.Sales.PaymentSuccessfulPage));
+            
         }
 
         public static INavigationService ViewNavigationService { get; } = new NavigationService();
