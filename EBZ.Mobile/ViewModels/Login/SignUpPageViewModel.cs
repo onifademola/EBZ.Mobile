@@ -29,6 +29,7 @@ namespace EBZ.Mobile.ViewModels.Login
         DialogService _dialogService = new DialogService();
         AuthenticationService _authenticationService = new AuthenticationService();
         SettingsService _settingsService = new SettingsService();
+        StorageService _storageService = new StorageService();
         //CustomerDataService _customerDataService = new CustomerDataService();
 
         /// <summary>
@@ -218,7 +219,8 @@ namespace EBZ.Mobile.ViewModels.Login
                         _settingsService.UserNameSetting = authenticationResponse.Username;
                         _settingsService.TokenSetting = authenticationResponse.Token;
                         _settingsService.ValidToSetting = authenticationResponse.ValidTo.ToShortDateString();
-                        _settingsService.RolesSetting = authenticationResponse.Role;
+                        //_settingsService.RolesSetting = authenticationResponse.Roles;
+                        _storageService.InsertIntoCache<List<string>>("userRoles", authenticationResponse.Roles);
 
                         _dialogService.HideLoading();
                         var viewNAvServ = App.ViewNavigationService;

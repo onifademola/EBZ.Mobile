@@ -29,6 +29,19 @@ namespace EBZ.Mobile.Services
             }
         }
 
+        public async Task<IDictionary<string, T>> GetKeyPairsFromCache<T>(IEnumerable<string> keys)
+        {
+            try
+            {
+                IDictionary<string, T> t = await Cache.GetObjects<T>(keys);
+                return t;
+            }
+            catch (KeyNotFoundException)
+            {
+                return default(IDictionary<string, T>);
+            }
+        }
+
         public async void InsertIntoCache<T>(string cacheName, T t)
         {
             await Cache.InsertObject<T>(cacheName, t);

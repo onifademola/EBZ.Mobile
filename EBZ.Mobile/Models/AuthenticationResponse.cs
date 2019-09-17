@@ -10,6 +10,6 @@ namespace EBZ.Mobile.Models
         public string Username { get; set; }
         public string Token { get; set; }
         public DateTime ValidTo { get; set; }
-        public string Role { get; set; }
+        public List<string> Roles { get; set; }
     }
 }

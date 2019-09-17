@@ -1,4 +1,5 @@
 ﻿using EBZ.Mobile.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -17,6 +18,7 @@ namespace EBZ.Mobile.ViewModels.Login
         private SettingsService _settingsService;
         private DialogService _dialogService;
         private ConnectionService _connectionService;
+        private StorageService _storageService;
         #endregion
 
         #region Constructor        
@@ -26,6 +28,7 @@ namespace EBZ.Mobile.ViewModels.Login
             _settingsService = new SettingsService();
             _dialogService = new DialogService();
             _connectionService = new ConnectionService();
+            _storageService = new StorageService();
 
             this.LoginCommand = new Command(this.LoginClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
@@ -108,7 +111,8 @@ namespace EBZ.Mobile.ViewModels.Login
                         _settingsService.UserNameSetting = authenticationResponse.Username;
                         _settingsService.TokenSetting = authenticationResponse.Token;
                         _settingsService.ValidToSetting = authenticationResponse.ValidTo.ToShortDateString();
-                        _settingsService.RolesSetting = authenticationResponse.Role;
+                        //_settingsService.RolesSetting = authenticationResponse.Role;
+                        _storageService.InsertIntoCache<List<string>>("userRoles", authenticationResponse.Roles);
 
                         var viewNAvServ = App.ViewNavigationService;
                         var mainPage = ((NavigationService)viewNAvServ).SetRootPage("MainPage");

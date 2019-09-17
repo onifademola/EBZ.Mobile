@@ -1,6 +1,7 @@
 ﻿using EBZ.Mobile.Models;
 using EBZ.Mobile.Services;
 using EBZ.Mobile.ViewModels.Login;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -184,7 +185,8 @@ namespace EBZ.Mobile.ViewModels.Marketer
                         _settingsService.UserNameSetting = authenticationResponse.Username;
                         _settingsService.TokenSetting = authenticationResponse.Token;
                         _settingsService.ValidToSetting = authenticationResponse.ValidTo.ToShortDateString();
-                        _settingsService.RolesSetting = authenticationResponse.Role;
+                        //_settingsService.RolesSetting = authenticationResponse.Role;
+                        _storageService.InsertIntoCache<List<string>>("userRoles", authenticationResponse.Roles);
 
                         _dialogService.HideLoading();
                         var viewNAvServ = App.ViewNavigationService;
