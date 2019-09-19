@@ -25,27 +25,27 @@ namespace EBZ.Mobile
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            StartupControl();
         }
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
+            //clear any cached input before sleep
         }
 
         protected override void OnResume()
         {
-            // Handle when your app resumes
+            StartupControl();
         }
 
         private void StartupControl()
         {
-            if (_utilityService.IsTokenExpired())
+            if (_utilityService.IsTokenExpired() == false)
             {
                 var loginPage = ((NavigationService)ViewNavigationService).SetRootPage("SimpleLoginPage");
                 MainPage = loginPage;
             }
-            else if (_utilityService.IsAuthenticated())
+            else if (_utilityService.IsAuthenticated() == true)
             {
                 var mainPage = ((NavigationService)ViewNavigationService).SetRootPage("MainPage");
                 MainPage = mainPage;
@@ -70,7 +70,7 @@ namespace EBZ.Mobile
             ViewNavigationService.Configure("SimpleLoginPage", typeof(Views.Login.SimpleLoginPage));
             ViewNavigationService.Configure("SimpleSignUpPage", typeof(Views.Login.SimpleSignUpPage));
             ViewNavigationService.Configure("SimpleResetPasswordPage", typeof(Views.Login.SimpleResetPasswordPage));
-            ViewNavigationService.Configure("SimpleForgotPasswordPage", typeof(Views.Login.SimpleForgotPasswordPage));            
+            ViewNavigationService.Configure("SimpleForgotPasswordPage", typeof(Views.Login.SimpleForgotPasswordPage)); 
             ViewNavigationService.Configure("CustomersListPage", typeof(Views.Marketer.CustomersListPage));
             ViewNavigationService.Configure("NewCustomerPage", typeof(Views.Marketer.NewCustomerPage));
             ViewNavigationService.Configure("StartSalesPage", typeof(Views.Sales.StartSalesPage));

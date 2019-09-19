@@ -114,6 +114,7 @@ namespace EBZ.Mobile.ViewModels.Login
                         //_settingsService.RolesSetting = authenticationResponse.Role;
                         _storageService.InsertIntoCache<List<string>>("userRoles", authenticationResponse.Roles);
 
+
                         var viewNAvServ = App.ViewNavigationService;
                         var mainPage = ((NavigationService)viewNAvServ).SetRootPage("MainPage");
 

@@ -29,6 +29,7 @@ namespace EBZ.Mobile.ViewModels.Marketer
         DialogService _dialogService = new DialogService();
         AuthenticationService _authenticationService = new AuthenticationService();
         SettingsService _settingsService = new SettingsService();
+        StorageService _storageService = new StorageService();
 
         
         public NewCustomerPageModel()
