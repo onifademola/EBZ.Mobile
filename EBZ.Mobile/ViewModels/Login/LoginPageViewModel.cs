@@ -113,6 +113,7 @@ namespace EBZ.Mobile.ViewModels.Login
                         _settingsService.ValidToSetting = authenticationResponse.ValidTo.ToShortDateString();
                         //_settingsService.RolesSetting = authenticationResponse.Role;
                         _storageService.InsertIntoCache<List<string>>("userRoles", authenticationResponse.Roles);
+                        _storageService.InsertIntoCache("username", authenticationResponse.Username);
 
 
                         var viewNAvServ = App.ViewNavigationService;

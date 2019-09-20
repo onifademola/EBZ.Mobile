@@ -9,11 +9,12 @@ namespace EBZ.Mobile
         public MainPage()
         {
             //Customize layout
-            this.BarTextColor = Color.DarkRed;
-            this.BarBackgroundColor = Color.SlateGray;
+            this.BackgroundColor = Color.FromHex("#20FFFFFF");
+            this.BarTextColor = Color.FromHex("#012E8B");
+            this.BarBackgroundColor = Color.FromHex("#20FFFFDD");
             this.SelectedTabColor = Color.Yellow;
             this.UnselectedTabColor = Color.Turquoise;
-            this.Title = "Tab Page";
+            this.Title = "EBZ";
 
             var marketersPage = new Views.Marketer.CustomersListPage
             {

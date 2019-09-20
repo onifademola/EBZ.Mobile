@@ -29,7 +29,7 @@ namespace EBZ.Mobile.ViewModels.User
         {
             this.profileImage = App.BaseImageUrl + "ProfileImage1.png";
             this.profileName = "John Deo";
-            this.email = "johndoe@gmail.com";
+            this.email = _storageService.GetFromCache<string>("username").Result;
 
             this.CustomerCommand = new Command(this.CustomerButtonClicked);
             this.TransactionCommand = new Command(this.TransactionOptionClicked);
@@ -110,7 +110,7 @@ namespace EBZ.Mobile.ViewModels.User
         private async void CustomerButtonClicked(object obj)
         {
             var navServ = App.ViewNavigationService;
-            await navServ.NavigateModalAsync("CustomersListPage");
+            await navServ.NavigateAsync("CustomersListPage");
         }
 
         private void TransactionOptionClicked(object obj)

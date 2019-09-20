@@ -18,9 +18,6 @@ namespace EBZ.Mobile
             AppContainer.RegisterDependencies();
             RegisterViews();
             InitializeComponent();
-            StartupControl();
-            //var page = ((NavigationService)ViewNavigationService).SetRootPage("StartSalesPage");
-            //MainPage = page;
         }
 
         protected override void OnStart()
@@ -35,12 +32,12 @@ namespace EBZ.Mobile
 
         protected override void OnResume()
         {
-            StartupControl();
+            
         }
 
         private void StartupControl()
         {
-            if (_utilityService.IsTokenExpired() == false)
+            if (_utilityService.IsTokenExpired() == true)
             {
                 var loginPage = ((NavigationService)ViewNavigationService).SetRootPage("SimpleLoginPage");
                 MainPage = loginPage;

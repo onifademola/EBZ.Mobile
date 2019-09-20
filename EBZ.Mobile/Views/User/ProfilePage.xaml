@@ -26,15 +26,15 @@ xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.Xamar
         <viewModel:ProfileViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ControlTemplate>
+    <!--<ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
-                <!--  Title View  -->
+                --><!--  Title View  --><!--
                 <controls:TitleView Title="Profile" BackgroundColor="{DynamicResource Gray-White}" />
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>
-    </ContentPage.ControlTemplate>
+    </ContentPage.ControlTemplate>-->
 
     <ContentPage.Content>
         <ScrollView>

@@ -9,9 +9,7 @@ using Xamarin.Forms.Internals;
 
 namespace EBZ.Mobile.ViewModels.Marketer
 {
-    /// <summary>
-    /// ViewModel for Article bookmark page 
-    /// </summary> 
+
     [Preserve(AllMembers = true)]
     public class CustomersListPageModel : INotifyPropertyChanged
     {
@@ -20,19 +18,17 @@ namespace EBZ.Mobile.ViewModels.Marketer
         UserService _userService = new UserService();
         SettingsService _settingsService = new SettingsService();
         DialogService _dialogService = new DialogService();
-        NavigationService _navigationService = new NavigationService();
-
+        StorageService _storageService = new StorageService();
+        private string username;
         public ObservableCollection<MarketerCustomer> _customers { get; set; }
 
         #endregion
 
         #region Constructor
 
-        /// <summary>
-        /// Initializes a new instance for the <see cref="BookmarksViewModel" /> class.
-        /// </summary>
         public CustomersListPageModel()
         {
+            
             if (isCustomersEmpty())
             {
                 LoadData();
@@ -54,11 +50,7 @@ namespace EBZ.Mobile.ViewModels.Marketer
         #endregion
 
         #region Public Properties        
-
-        /// <summary>
-        /// Gets or sets the property that has been bound with the list view, which displays the articles' latest stories items.
-        /// </summary>
-
+                
         public ObservableCollection<MarketerCustomer> Customers
         {
             get
@@ -108,8 +100,10 @@ namespace EBZ.Mobile.ViewModels.Marketer
         {
             if (_userService.IsAuthenticated())
             {
+                 username = await _storageService.GetFromCache<string>("username");
+
                 _dialogService.ShowLoading("Loading...");
-                var custs = await customerDataService.GetCustomersForMarketer(_settingsService.UserNameSetting);
+                var custs = await customerDataService.GetCustomersForMarketer(username);
                 if (custs != null)
                 {
                     Customers = custs.ToObservableCollection();
@@ -123,19 +117,12 @@ namespace EBZ.Mobile.ViewModels.Marketer
             }
         }
 
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
+        
         public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        /// <summary>
-        /// Invoked when the bookmark button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
         private async void AddButtonClicked(object obj)
         {
             var navServ = App.ViewNavigationService;
@@ -147,9 +134,7 @@ namespace EBZ.Mobile.ViewModels.Marketer
             
         }
 
-        /// <summary>
-        /// Invoked when an item is selected.
-        /// </summary>
+
         private void ItemSelected(object obj)
         {
             // Do something

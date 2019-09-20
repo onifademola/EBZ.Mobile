@@ -27,15 +27,15 @@
         <viewModel:CustomersListPageModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ControlTemplate>
+    <!--<ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
-                <!--  Title View  -->
+                --><!--  Title View  --><!--
                 <controls:TitleView Title="My Customers" BackgroundColor="{DynamicResource Gray-White}" />
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>
-    </ContentPage.ControlTemplate>
+    </ContentPage.ControlTemplate>-->
 
     <ContentPage.Content>
 

@@ -10,11 +10,18 @@ namespace EBZ.Mobile.Services
             var tokenDate = _settingsService.ValidToSetting;
             if (tokenDate != null)
             {
-                //DateTime tempDate = DateTime.Today.AddMonths(9);
-                DateTime tokenEpiryDate = Convert.ToDateTime(tokenDate);
-                if (DateTime.Now < tokenEpiryDate)
-                    return false;
-                return true;
+                try
+                {
+                    //DateTime tempDate = DateTime.Today.AddMonths(9);
+                    DateTime tokenEpiryDate = Convert.ToDateTime(tokenDate);
+                    if (DateTime.Now < tokenEpiryDate)
+                        return false;
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return true;
+                }
             }
             return true;
         }
