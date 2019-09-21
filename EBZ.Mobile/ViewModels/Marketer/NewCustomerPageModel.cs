@@ -30,6 +30,7 @@ namespace EBZ.Mobile.ViewModels.Marketer
         AuthenticationService _authenticationService = new AuthenticationService();
         SettingsService _settingsService = new SettingsService();
         StorageService _storageService = new StorageService();
+        CustomerDataService _customerDataService = new CustomerDataService();
 
         
         public NewCustomerPageModel()
@@ -173,35 +174,26 @@ namespace EBZ.Mobile.ViewModels.Marketer
             {
                 try
                 {
-                    _dialogService.ShowLoading("Registering...");
+                    _dialogService.ShowLoading("Creating...");
                     string birthDay = SelectedDay;
                     string birthMonth = SelectedMonth;
                     int categoryId = SelectedCategory.Id;
-
-                    var authenticationResponse = await _authenticationService.Register(Email, Password, Phone, birthDay, birthMonth, categoryId);
-
-                    if (authenticationResponse.IsAuthenticated)
+                    string customerEmail = Email;
+                    string customerPhone = Phone;
+                    string marketerEmail = _settingsService.UserNameSetting;
+                    var result = await _customerDataService.RegisterNewCustomerByMarketer(customerEmail, customerPhone, birthDay, birthMonth, categoryId, marketerEmail);
+                    _dialogService.HideLoading();
+                    if (result != null)
                     {
-                        // we store the Id to know if the user is already logged in to the application
-                        _settingsService.UserNameSetting = authenticationResponse.Username;
-                        _settingsService.TokenSetting = authenticationResponse.Token;
-                        _settingsService.ValidToSetting = authenticationResponse.ValidTo.ToShortDateString();
-                        //_settingsService.RolesSetting = authenticationResponse.Role;
-                        _storageService.InsertIntoCache<List<string>>("userRoles", authenticationResponse.Roles);
-
-                        _dialogService.HideLoading();
-                        var viewNAvServ = App.ViewNavigationService;
-                        var mainPage = ((NavigationService)viewNAvServ).SetRootPage("MainPage");
-                        App.Current.MainPage = mainPage;
+                        _dialogService.ShowToast("Customer account has been created successfully.");
+                        var navServ = App.ViewNavigationService;
+                        await navServ.GoBack();
                     }
                     else
                     {
-                        _dialogService.HideLoading();
-                        await _dialogService.ShowDialog(
-                        "This username/password combination is not valid",
-                        "Error logging you in",
-                        "OK");
+                        await _dialogService.ShowDialog("Customer account was not created. Try with another email, or contact Support.", "Error", "Cancel");
                     }
+
                 }
                 catch (System.Exception)
                 {

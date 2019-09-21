@@ -38,15 +38,16 @@
             </StackLayout>
         </ControlTemplate>
     </ContentPage.ControlTemplate>-->
-
+    
     <ContentPage.Content>
 
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
+            
             <ScrollView Grid.Row="0">
+                
                 <pullToRefresh:SfPullToRefresh x:Name="pullToRefresh" 
                                        PullingThreshold="60" 
                                        ProgressStrokeWidth="5" 
@@ -55,7 +56,7 @@
                                        RefreshContentWidth="40" 
                                        RefreshContentHeight="40" 
                                        TransitionMode="Push"
-                                       Margin="5,5,5,5"
+                                       Margin="5,5,5,5" 
                                        IsRefreshing="False">
                     <pullToRefresh:SfPullToRefresh.PullableContent>
                         <listview:SfListView x:Name="listView" 
@@ -65,8 +66,10 @@
                                        BackgroundColor="{DynamicResource Gray-F0}"
                                        SelectionBackgroundColor="Khaki"
                                        SelectionGesture="Tap"
-                                     SelectedItem="{Binding SelectedItem}"
+                                       SelectedItem="{Binding SelectedItem}"
+                                       AllowGroupExpandCollapse="True"
                                        SelectionMode="Single">
+
                             <listview:SfListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid BackgroundColor="WhiteSmoke" Padding="5" RowSpacing="10">
@@ -105,21 +108,36 @@
                                                 <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
 
-                                            <Label Text="{Binding Email}" 
-                                           TextColor="Black" 
-                                           FontAttributes="Bold" 
-                                           FontSize="20"/>
+                                            <Label 
+                                                Grid.ColumnSpan="2"
+                                                Text="{Binding Email}" 
+                                                TextColor="Black" 
+                                                FontAttributes="Bold" 
+                                                FontSize="16"/>
                                             <Label Grid.Row="1" 
                                            FontSize = "16" 
                                            TextColor="Black" 
                                            Text="{Binding Category}" 
                                            LineBreakMode="TailTruncation"  />
-                                            
+                                            <Label Grid.Row="2" Grid.Column="0"
+                                           FontSize = "14" 
+                                           TextColor="CadetBlue" 
+                                           Text="{Binding Dob}" 
+                                           LineBreakMode="TailTruncation"  />
+                                            <Label Grid.Row="2" Grid.Column="1" 
+                                           FontSize = "14" 
+                                           TextColor="DarkBlue" 
+                                           Text="{Binding Phone}" 
+                                                   HorizontalTextAlignment="End"
+                                                   HorizontalOptions="End"
+                                           LineBreakMode="TailTruncation"  />
+
                                         </Grid>
 
                                     </Grid>
                                 </DataTemplate>
-                            </listview:SfListView.ItemTemplate>
+                                </listview:SfListView.ItemTemplate>
+
                         </listview:SfListView>
                     </pullToRefresh:SfPullToRefresh.PullableContent>
                 </pullToRefresh:SfPullToRefresh>

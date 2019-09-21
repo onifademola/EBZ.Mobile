@@ -32,10 +32,8 @@ namespace EBZ.Mobile.ViewModels.Sales
         #endregion
 
         #region Constructor
-        DateModel _dateModel = new DateModel();
+        //DateModel _dateModel = new DateModel();
         DialogService _dialogService = new DialogService();
-        AuthenticationService _authenticationService = new AuthenticationService();
-        SettingsService _settingsService = new SettingsService();
         SalesDataService _salesDataService = new SalesDataService();
 
         public PaymentPageModel()
@@ -417,21 +415,12 @@ namespace EBZ.Mobile.ViewModels.Sales
             if (result != null)
             {
                 _dialogService.HideLoading();
-                await navServ.NavigateAsync("PaymentSuccessfulPage"); //PaymentSuccessfulPage
+                await navServ.NavigateAsync("PaymentSuccessfulPage");
             }
             else
             {
                 _dialogService.HideLoading();
-                await navServ.NavigateAsync("PaymentFailedPage"); //PaymentSuccessfulPage
-                //var response = await DisplayAlert("Failed Transaction", "Unable to complete payment, please try another transaction.", "Ok", "Cancel");
-                //if (response == true)
-                //{
-                //    await Navigation.PopModalAsync();
-                //}
-                //else
-                //{
-                //    await Navigation.PopModalAsync();
-                //}
+                await navServ.NavigateAsync("PaymentFailedPage");
             }
         }
         #endregion

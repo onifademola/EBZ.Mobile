@@ -40,5 +40,13 @@ namespace EBZ.Mobile.Views.Sales
                 ErrorImage.IsVisible = true;
             }
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            //return base.OnBackButtonPressed();
+            var navServ = App.ViewNavigationService;
+            navServ.ClearModalStack();
+            return true;
+        }
     }
 }

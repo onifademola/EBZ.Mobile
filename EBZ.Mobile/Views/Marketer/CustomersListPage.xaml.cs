@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EBZ.Mobile.ViewModels.Marketer;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EBZ.Mobile.Views.Marketer
@@ -10,12 +11,21 @@ namespace EBZ.Mobile.Views.Marketer
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CustomersListPage
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BookmarksPage" /> class.
-        /// </summary>
+        CustomersListPageModel cbsm = new CustomersListPageModel();
+
         public CustomersListPage()
         {
             this.InitializeComponent();
+        }
+
+        private void PullToRefresh_Refreshing(object sender, System.EventArgs e)
+        {            
+            cbsm.LoadData();
+        }
+
+        private void ContentPage_Appearing(object sender, System.EventArgs e)
+        {
+            cbsm.StartModel();
         }
     }
 }

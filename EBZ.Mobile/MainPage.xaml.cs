@@ -1,4 +1,5 @@
 using Syncfusion.XForms.TabView;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace EBZ.Mobile
@@ -15,6 +16,14 @@ namespace EBZ.Mobile
             this.SelectedTabColor = Color.Yellow;
             this.UnselectedTabColor = Color.Turquoise;
             this.Title = "EBZ";
+
+            //get user roles
+            if (Application.Current.Properties.ContainsKey("userRoles"))
+            {
+                List<string> roles = (List<string>)Application.Current.Properties["userRoles"];
+                var rols = roles;
+            }
+                
 
             var marketersPage = new Views.Marketer.CustomersListPage
             {

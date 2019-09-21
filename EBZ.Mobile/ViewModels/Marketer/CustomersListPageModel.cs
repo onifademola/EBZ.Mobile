@@ -28,14 +28,10 @@ namespace EBZ.Mobile.ViewModels.Marketer
 
         public CustomersListPageModel()
         {
-            
-            if (isCustomersEmpty())
-            {
-                LoadData();
-            }
             this.AddCommand = new Command(this.AddButtonClicked);
             this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
             this.ItemSelectedCommand = new Command(this.ItemSelected);
+            StartModel();
         }
 
         #endregion
@@ -85,6 +81,14 @@ namespace EBZ.Mobile.ViewModels.Marketer
         #endregion
 
         #region Methods
+
+        public void StartModel()
+        {
+            if (isCustomersEmpty())
+            {
+                LoadData();
+            }
+        }
 
         public bool isCustomersEmpty()
         {
