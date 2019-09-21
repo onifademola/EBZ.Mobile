@@ -23,12 +23,14 @@ namespace EBZ.Mobile.ViewModels.User
 
         #region Constructor
         StorageService _storageService = new StorageService();
+        SettingsService _settingsService = new SettingsService();
 
 
         public ProfileViewModel()
         {
             this.profileImage = App.BaseImageUrl + "ProfileImage1.png";
             this.profileName = "John Deo";
+            this.email = _settingsService.UserNameSetting;
             //this.email = _storageService.GetFromCache<string>("username").Result;
 
             this.CustomerCommand = new Command(this.CustomerButtonClicked);
@@ -117,8 +119,6 @@ namespace EBZ.Mobile.ViewModels.User
 
         private void LogoutButtonClicked(object obj)
         {
-            StorageService _storageService = new StorageService();
-            SettingsService _settingsService = new SettingsService();
             _storageService.InvalidateAllCache();
             _settingsService.UserNameSetting = null;
             _settingsService.TokenSetting = null;
