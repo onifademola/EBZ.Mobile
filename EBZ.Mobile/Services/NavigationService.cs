@@ -114,6 +114,26 @@ namespace EBZ.Mobile.Services
             }
         }
 
+        public void ClearBackStack4Login()
+        {
+            var navigationStack = CurrentNavigationPage.Navigation;
+            Page currentPage = navigationStack.NavigationStack.LastOrDefault();
+            if (navigationStack.NavigationStack.Count > 1)
+            {
+                var existingPages = navigationStack.NavigationStack.ToList();
+                foreach (var page in existingPages)
+                {
+                    if(page != currentPage)
+                    {
+                        navigationStack.RemovePage(page);
+                    }
+                }
+            }
+            //var actionPage = App.Current.MainPage;
+            //if (actionPage.Navigation != null)
+            //    actionPage = actionPage.Navigation.NavigationStack.Last();
+        }
+
         public async Task GoToRoot()
         {
             var navigationStack = CurrentNavigationPage.Navigation;

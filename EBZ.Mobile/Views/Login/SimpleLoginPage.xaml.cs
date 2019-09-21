@@ -18,5 +18,13 @@ namespace EBZ.Mobile.Views.Login
         {
             this.InitializeComponent();
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            //return base.OnBackButtonPressed();
+            var navServ = App.ViewNavigationService;
+            navServ.ClearBackStack4Login();
+            return false;
+        }
     }
 }

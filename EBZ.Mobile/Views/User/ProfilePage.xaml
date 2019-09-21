@@ -2,7 +2,6 @@
 <ContentPage
     x:Class="EBZ.Mobile.Views.User.ProfilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.XamarinForms.Barcode"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
@@ -37,11 +36,16 @@ xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.Xamar
     </ContentPage.ControlTemplate>-->
 
     <ContentPage.Content>
-        <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <StackLayout BackgroundColor="{DynamicResource Gray-F4}" Spacing="0">
+            <ScrollView Grid.Row="0">
 
-                <Grid
+                <StackLayout BackgroundColor="{DynamicResource Gray-F4}" Spacing="0">
+
+                    <Grid
                     Margin="0,16,0,0"
                     Padding="16,8"
                     BackgroundColor="{DynamicResource Gray-White}"
@@ -49,30 +53,30 @@ xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.Xamar
                     HeightRequest="48"
                     RowSpacing="2">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <!--  Rounded Profile Image  -->
-                    <border:SfBorder
+                        <!--  Rounded Profile Image  -->
+                        <border:SfBorder
                         Grid.RowSpan="2"
                         BackgroundColor="{DynamicResource Gray-F0}"
                         Style="{StaticResource ProfileBorderStyle}">
-                        <ffimageloading:CachedImage
+                            <ffimageloading:CachedImage
                             HeightRequest="48"
                             Source="{Binding ProfileImage}"
                             WidthRequest="48" />
-                    </border:SfBorder>
+                        </border:SfBorder>
 
-                    <!--  Profile Name  -->
-                    <Label
+                        <!--  Profile Name  -->
+                        <Label
                         Grid.Column="1"
                         Margin="0,4,0,0"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -85,8 +89,8 @@ xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.Xamar
                         Text="{Binding ProfileName}"
                         TextColor="{DynamicResource Gray-56}" />
 
-                    <!--  Email  -->
-                    <Label
+                        <!--  Email  -->
+                        <Label
                         Grid.Row="1"
                         Grid.Column="1"
                         FontFamily="{StaticResource Montserrat-Medium}"
@@ -99,8 +103,8 @@ xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.Xamar
                         Text="{Binding Email}"
                         TextColor="{DynamicResource Gray-94}" />
 
-                    <!--  Edit button  -->
-                    <buttons:SfButton
+                        <!--  Edit button  -->
+                        <buttons:SfButton
                         Grid.RowSpan="2"
                         Grid.Column="2"
                         Margin="8,0"
@@ -110,69 +114,69 @@ xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.Xamar
                         Style="{StaticResource ProfileButtonStyle}"
                         Text="{StaticResource Edit}"
                         WidthRequest="32" />
-                </Grid>
+                    </Grid>
 
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                    <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <BoxView BackgroundColor="{DynamicResource Gray-F4}" HeightRequest="16" />
+                    <BoxView BackgroundColor="{DynamicResource Gray-F4}" HeightRequest="16" />
 
-                <!--  Grid for Night mode label and switch  -->
-                <Grid BackgroundColor="{DynamicResource Gray-White}">
+                    <!--  Grid for Night mode label and switch  -->
+                    <Grid BackgroundColor="{DynamicResource Gray-White}">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <!--  Night mode label  -->
-                    <Label Style="{StaticResource ProfileLabelStyle}" Text="Night Mode" />
+                        <!--  Night mode label  -->
+                        <Label Style="{StaticResource ProfileLabelStyle}" Text="Night Mode" />
 
-                    <!--  Night mode switch  -->
-                    <buttons:SfSwitch
+                        <!--  Night mode switch  -->
+                        <buttons:SfSwitch
                         Grid.Column="1"
                         Margin="8,0"
                         AllowIndeterminateState="False"
                         HeightRequest="28"
                         VisualType="Cupertino">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="On">
-                                    <VisualState.Setters>
-                                        <Setter Property="SwitchSettings">
-                                            <Setter.Value>
-                                                <buttons:CupertinoSwitchSettings
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="On">
+                                        <VisualState.Setters>
+                                            <Setter Property="SwitchSettings">
+                                                <Setter.Value>
+                                                    <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OnState"
                                                     ThumbBorderColor="{DynamicResource Gray-F0}"
                                                     ThumbColor="{DynamicResource Gray-White}"
                                                     TrackBorderColor="{DynamicResource Gray-F0}"
                                                     TrackColor="{DynamicResource PrimaryColor}" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </VisualState.Setters>
-                                </VisualState>
-                                <VisualState x:Name="Off">
-                                    <VisualState.Setters>
-                                        <Setter Property="SwitchSettings">
-                                            <Setter.Value>
-                                                <buttons:CupertinoSwitchSettings
+                                                </Setter.Value>
+                                            </Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Off">
+                                        <VisualState.Setters>
+                                            <Setter Property="SwitchSettings">
+                                                <Setter.Value>
+                                                    <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OffState"
                                                     ThumbBorderColor="{DynamicResource Gray-F0}"
                                                     ThumbColor="{DynamicResource Gray-White}"
                                                     TrackBorderColor="{DynamicResource Gray-F0}"
                                                     TrackColor="{DynamicResource Gray-White}" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                    </buttons:SfSwitch>
-                </Grid>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </buttons:SfSwitch>
+                    </Grid>
 
-                <BoxView Style="{StaticResource SeparatorStyle}" />
+                    <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <!--  Grid for Text size label and navigation bar icon  -->
-                <!--<Grid x:Name="TextSizeGrid" BackgroundColor="{DynamicResource Gray-White}">
+                    <!--  Grid for Text size label and navigation bar icon  -->
+                    <!--<Grid x:Name="TextSizeGrid" BackgroundColor="{DynamicResource Gray-White}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -183,10 +187,14 @@ xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.Xamar
                         <TapGestureRecognizer Command="{Binding CustomerCommand}" CommandParameter="{x:Reference TextSizeGrid}" />
                     </Grid.GestureRecognizers>
 
-                    --><!--  Text size label  --><!--
+                    -->
+                    <!--  Text size label  -->
+                    <!--
                     <Label Style="{StaticResource ProfileLabelStyle}" Text="My Customers" />
 
-                    --><!--  Text size navigation icon  --><!--
+                    -->
+                    <!--  Text size navigation icon  -->
+                    <!--
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource ProfileIconLabelStyle}"
@@ -195,8 +203,8 @@ xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.Xamar
 
                 <BoxView Style="{StaticResource SeparatorStyle}" />-->
 
-                <!--  Grid for Settings label and navigation bar icon  -->
-                <!--<Grid x:Name="SettingsGrid" BackgroundColor="{DynamicResource Gray-White}">
+                    <!--  Grid for Settings label and navigation bar icon  -->
+                    <!--<Grid x:Name="SettingsGrid" BackgroundColor="{DynamicResource Gray-White}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
@@ -206,10 +214,14 @@ xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.Xamar
                         <TapGestureRecognizer Command="{Binding SalesCommand}" CommandParameter="{x:Reference SettingsGrid}" />
                     </Grid.GestureRecognizers>
 
-                    --><!--  Settings Label  --><!--
+                    -->
+                    <!--  Settings Label  -->
+                    <!--
                     <Label Style="{StaticResource ProfileLabelStyle}" Text="Sell A Product" />
 
-                    --><!--  Settings navigation icon  --><!--
+                    -->
+                    <!--  Settings navigation icon  -->
+                    <!--
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource ProfileIconLabelStyle}"
@@ -218,15 +230,21 @@ xmlns:barcode="clr-namespace:Telerik.XamarinForms.Barcode;assembly=Telerik.Xamar
 
                 <BoxView Style="{StaticResource SeparatorStyle}" />-->
 
-                <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
-                    <syncfusion:SfBarcode BackgroundColor="{DynamicResource Gray-White}" Text="{Binding Email}" Symbology="QRCode" HorizontalOptions="Fill" VerticalOptions="Fill">
-                        <syncfusion:SfBarcode.SymbologySettings>
-                            <syncfusion:QRBarcodeSettings XDimension="12"/>
-                        </syncfusion:SfBarcode.SymbologySettings>
-                    </syncfusion:SfBarcode>
-                </Grid>
-            </StackLayout>
+                    <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
+                        <syncfusion:SfBarcode BackgroundColor="{DynamicResource Gray-White}" Text="{Binding Email}" Symbology="QRCode" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <syncfusion:SfBarcode.SymbologySettings>
+                                <syncfusion:QRBarcodeSettings XDimension="12"/>
+                            </syncfusion:SfBarcode.SymbologySettings>
+                        </syncfusion:SfBarcode>
+                    </Grid>
+                </StackLayout>
 
-        </ScrollView>
+            </ScrollView>
+            <buttons:SfButton Grid.Row="0" 
+                              Text="Logout"
+                              Command="{Binding LogoutCommand}"/>
+
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

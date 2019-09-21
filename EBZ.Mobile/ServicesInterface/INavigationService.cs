@@ -11,6 +11,7 @@ namespace EBZ.Mobile.ServicesInterface
         Task GoBack();
         Task ClearModalStack();
         void ClearBackStack();
+        void ClearBackStack4Login();
         Task GoToRoot();
         Task NavigateModalAsync(string pageKey, bool animated = true);
         Task NavigateModalAsync(string pageKey, object parameter, bool animated = true);

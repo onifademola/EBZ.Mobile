@@ -29,12 +29,13 @@ namespace EBZ.Mobile.ViewModels.User
         {
             this.profileImage = App.BaseImageUrl + "ProfileImage1.png";
             this.profileName = "John Deo";
-            this.email = _storageService.GetFromCache<string>("username").Result;
+            //this.email = _storageService.GetFromCache<string>("username").Result;
 
             this.CustomerCommand = new Command(this.CustomerButtonClicked);
             this.TransactionCommand = new Command(this.TransactionOptionClicked);
             this.SalesCommand = new Command(this.SalesOptionClicked);
             this.SettingsCommand = new Command(this.SettingsOptionClicked);
+            this.LogoutCommand = new Command(this.LogoutButtonClicked);
         }
 
         #endregion
@@ -103,6 +104,7 @@ namespace EBZ.Mobile.ViewModels.User
         public Command TransactionCommand { get; set; }
         public Command SettingsCommand { get; set; }
         public Command SalesCommand { get; set; }
+        public Command LogoutCommand { get; set; }
         #endregion
 
         #region Methods
@@ -111,6 +113,21 @@ namespace EBZ.Mobile.ViewModels.User
         {
             var navServ = App.ViewNavigationService;
             await navServ.NavigateAsync("CustomersListPage");
+        }
+
+        private void LogoutButtonClicked(object obj)
+        {
+            StorageService _storageService = new StorageService();
+            SettingsService _settingsService = new SettingsService();
+            _storageService.InvalidateAllCache();
+            _settingsService.UserNameSetting = null;
+            _settingsService.TokenSetting = null;
+            _settingsService.ValidToSetting = null;
+
+            var navServ = App.ViewNavigationService;
+            navServ.ClearModalStack();
+            navServ.ClearBackStack();
+            navServ.NavigateAsync("SimpleLoginPage");
         }
 
         private void TransactionOptionClicked(object obj)
