@@ -112,7 +112,7 @@ namespace EBZ.Mobile.ViewModels.Login
                         _settingsService.TokenSetting = authenticationResponse.Token;
                         _settingsService.ValidToSetting = authenticationResponse.ValidTo.ToShortDateString();
                         //_settingsService.RolesSetting = authenticationResponse.Role;
-                        _storageService.InsertIntoCache<List<string>>("userRoles", authenticationResponse.Roles);
+                        _storageService.InsertIntoCache("userRoles", authenticationResponse.Roles.ToArray());
                         Application.Current.Properties["userRoles"] = authenticationResponse.Roles;
                         _storageService.InsertIntoCache("username", authenticationResponse.Username);
 

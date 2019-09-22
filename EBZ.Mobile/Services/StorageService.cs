@@ -47,6 +47,11 @@ namespace EBZ.Mobile.Services
             await Cache.InsertObject<T>(cacheName, t);
         }
 
+        public async void InsertIntoObjectCache<T>(string cacheName, T t)
+        {
+            await Cache.InsertObject<T>(cacheName, t);
+        }
+
         public async void InsertKeyPairsIntoCache<T>(Dictionary<string, T> dictionary)
         {
             await Cache.InsertObjects<T>(dictionary);

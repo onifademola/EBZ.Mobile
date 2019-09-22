@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EBZ.Mobile.ServicesInterface
+﻿namespace EBZ.Mobile.ServicesInterface
 {
     public interface ISettingsService
     {
