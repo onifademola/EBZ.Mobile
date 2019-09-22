@@ -27,7 +27,7 @@ namespace EBZ.Mobile
 
             var marketersPage = new Views.Marketer.CustomersListPage
             {
-                Title = "Customers",
+                Title = "Clients",
                 IconImageSource = "",
                 
             };
@@ -38,12 +38,23 @@ namespace EBZ.Mobile
             var userPage = new Views.User.ProfilePage();
             userPage.Title = "Profile";
 
+            var userRxPage = new Views.User.Recharges();
+            userRxPage.Title = "RX";
+
+            var userTxPage = new Views.User.Transactions();
+            userTxPage.Title = "TX";
+
             //add tabs
             if(UserIsInRole("Sales") == true)
             {
                 Children.Add(shop);
             }
             Children.Add(userPage);
+            if (UserIsInRole("Customer") == true)
+            {
+                Children.Add(userTxPage);
+                Children.Add(userRxPage);
+            }
             if (UserIsInRole("Marketer") == true)
             {
                 Children.Add(marketersPage);

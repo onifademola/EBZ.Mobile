@@ -27,7 +27,6 @@ namespace EBZ.Mobile.ViewModels.Marketer
         #region Constructor
         DateModel _dateModel = new DateModel();
         DialogService _dialogService = new DialogService();
-        AuthenticationService _authenticationService = new AuthenticationService();
         SettingsService _settingsService = new SettingsService();
         StorageService _storageService = new StorageService();
         CustomerDataService _customerDataService = new CustomerDataService();
@@ -205,12 +204,10 @@ namespace EBZ.Mobile.ViewModels.Marketer
         #endregion
 
         #region Methods
-        private async void LoadControls()
+        private void LoadControls()
         {
             days = _dateModel.DayPicker();
             months = _dateModel.MonthPicker();
-            categoryList = await _customerDataService.GetCustomerCategories();
-            var ls = categoryList;
         }
 
         private async void CreateClicked(object obj)
@@ -239,6 +236,8 @@ namespace EBZ.Mobile.ViewModels.Marketer
                     {
                         _dialogService.ShowToast("Customer account has been created successfully.");
                         var navServ = App.ViewNavigationService;
+                        CustomersListPageModel clp = new CustomersListPageModel();
+                        clp.LoadData();
                         await navServ.GoBack();
                     }
                     else

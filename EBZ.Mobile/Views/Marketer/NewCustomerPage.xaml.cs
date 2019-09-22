@@ -14,7 +14,6 @@ namespace EBZ.Mobile.Views.Marketer
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewCustomerPage
     {
-        //DateModel _dateModel = new DateModel();
         CustomerDataService _customerDataService = new CustomerDataService();
 
         public NewCustomerPage()
@@ -25,9 +24,6 @@ namespace EBZ.Mobile.Views.Marketer
 
         private async void LoadControls()
         {
-            //dobDay.ItemsSource = _dateModel.DayPicker();
-            //dobMonth.ItemsSource = _dateModel.MonthPicker();
-
             List<Category> categoryList = await _customerDataService.GetCustomerCategories();
             catPicker.ItemsSource = categoryList.ToList();
         }

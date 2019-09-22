@@ -32,7 +32,6 @@
     <!--<ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
-                --><!--  Title View  --><!--
                 <controls:TitleView Title="My Customers" BackgroundColor="{DynamicResource Gray-White}" />
                 <ContentPresenter />
             </StackLayout>
@@ -43,10 +42,15 @@
 
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
-            <ScrollView Grid.Row="0">
+            <StackLayout Grid.Row="0">
+                <Label Text="My Customers"                           
+                       HorizontalTextAlignment="Center"
+                       FontSize="Small"/>
+            </StackLayout>
+            <ScrollView Grid.Row="1">
                 
                 <pullToRefresh:SfPullToRefresh x:Name="pullToRefresh" 
                                        PullingThreshold="60" 
@@ -57,8 +61,9 @@
                                        RefreshContentHeight="40" 
                                        TransitionMode="Push"
                                        Margin="5,5,5,5" 
-                                       IsRefreshing="False">
+                                               Refreshing="PullToRefresh_Refreshing">
                     <pullToRefresh:SfPullToRefresh.PullableContent>
+                        
                         <listview:SfListView x:Name="listView" 
                                        ItemSize="80" 
                                        ItemsSource="{Binding Customers}" 
@@ -249,7 +254,7 @@
                 </StackLayout>-->
             </ScrollView>
 
-            <buttons:SfButton Grid.Row="0" 
+            <buttons:SfButton Grid.Row="1" 
                               Text=" + "
                               Command="{Binding AddCommand}"
                               Style="{StaticResource SfCButtonStyle}"/>

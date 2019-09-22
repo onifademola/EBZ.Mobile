@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EBZ.Mobile.Views.User.Recharges"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="StartAndExpand">
+            <StackLayout Margin="2" VerticalOptions="Start">
+                <Label Text="Recent Account Recharges"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontSize="Small"/>
+            </StackLayout>
+            <ListView x:Name="listViewCtrl" 
+              HasUnevenRows="true"
+                      SelectionMode="None"
+                      Margin="5,5,5,5" 
+                      BackgroundColor="{DynamicResource Gray-F0}"
+                      SeparatorVisibility="Default"
+                       HorizontalScrollBarVisibility="Always">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid BackgroundColor="WhiteSmoke" Padding="5" RowSpacing="0" Margin="5,5,5,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="0"
+                                       Text="{Binding Amount}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="Black" />
+
+                                <Label Grid.Row="1"
+                                       Grid.Column="0"
+                                       Margin="0"
+                                       HorizontalOptions="Start"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalTextAlignment="Start"
+                                       Text="{Binding Date}"
+                                       FontSize="14"
+                                       TextColor="CadetBlue"/>
+
+                                <Label Grid.Row="2"
+                                       Grid.Column="1"
+                                       HorizontalOptions="End"
+                                       HorizontalTextAlignment="End"
+                                       VerticalTextAlignment="End"
+                                       TextColor="Black" 
+                                       FontSize="14"
+                                       Text="{Binding OldBalance}"/>
+
+                                <Label Grid.Row="3"
+                                       Grid.ColumnSpan="2"
+                                       FontSize="16"
+                                       HorizontalOptions="End"
+                                       HorizontalTextAlignment="End"
+                                       VerticalTextAlignment="End"
+                                       TextColor="DarkBlue"
+                                       Text="{Binding NewBalance}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
