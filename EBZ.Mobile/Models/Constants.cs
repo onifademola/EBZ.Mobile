@@ -7,7 +7,7 @@ namespace EBZ.Mobile.Models
     public class Constants
     {
         //public const string BaseApiUrl = "http://192.168.43.176:45455/api/v1"; http://10.123.167.84:45455/ http://eaglesbytz-002-site15.itempurl.com
-        public const string BaseApiUrl = "http://172.16.1.56:45455/api/v1";
+        public const string BaseApiUrl = "http://172.16.1.56:45457/api/v1";
         //public const string BaseApiUrl = "http://172.16.1.105:45455/api/v1";
         //public const string BaseApiUrl = "http://10.123.167.153:45455/api/v1";
         //public const string BaseApiUrl = "http://eaglesbytz-002-site15.itempurl.com/api/v1";

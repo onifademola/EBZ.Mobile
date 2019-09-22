@@ -9,6 +9,5 @@
         string TokenSetting { get; set; }
         string ValidToSetting { get; set; }
         string RolesSetting { get; set; }
-
     }
 }

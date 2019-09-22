@@ -74,7 +74,7 @@ namespace EBZ.Mobile.Services
 
         public void InvalidateAllCache()
         {
-            Cache.InvalidateAll(); ;
+            Cache.InvalidateAll();
         }
     }
 }

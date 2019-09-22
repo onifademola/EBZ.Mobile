@@ -14,7 +14,7 @@ namespace EBZ.Mobile.Views.Marketer
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewCustomerPage
     {
-        DateModel _dateModel = new DateModel();
+        //DateModel _dateModel = new DateModel();
         CustomerDataService _customerDataService = new CustomerDataService();
 
         public NewCustomerPage()
@@ -25,19 +25,17 @@ namespace EBZ.Mobile.Views.Marketer
 
         private async void LoadControls()
         {
-            dobDay.ItemsSource = _dateModel.DayPicker();
-            dobMonth.ItemsSource = _dateModel.MonthPicker();
+            //dobDay.ItemsSource = _dateModel.DayPicker();
+            //dobMonth.ItemsSource = _dateModel.MonthPicker();
 
-            IList<Category> categoryList = await _customerDataService.GetCustomerCategories();
+            List<Category> categoryList = await _customerDataService.GetCustomerCategories();
             catPicker.ItemsSource = categoryList.ToList();
         }
 
         protected override bool OnBackButtonPressed()
         {
             //return base.OnBackButtonPressed();
-            var navServ = App.ViewNavigationService;
-            navServ.GoBack();
-            return true;
+            return false;
         }
     }
 }

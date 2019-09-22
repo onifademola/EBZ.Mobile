@@ -10,9 +10,10 @@
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:viewModel="clr-namespace:EBZ.Mobile.ViewModels.Marketer"
     xmlns:local1="clr-namespace:EBZ.Mobile.Views.Login"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
     Title="New Customer"
     BackgroundColor="{DynamicResource Gray-F0}"
-    NavigationPage.HasNavigationBar="False"
+    NavigationPage.HasNavigationBar="True"
     Shell.NavBarIsVisible="False">
 
     <ContentPage.Resources>
@@ -122,6 +123,7 @@
                                 TitleColor="{DynamicResource Gray-94}"
                                 TextColor="{DynamicResource Gray-56}"
                                 SelectedItem="{Binding SelectedDay}"
+                                    ItemsSource="{Binding Days}"
                                 BackgroundColor="{DynamicResource Gray-White}"></Picker>
                         </border:SfBorder>
 
@@ -135,19 +137,21 @@
                                 TitleColor="{DynamicResource Gray-94}"
                                 TextColor="{DynamicResource Gray-56}" 
                             SelectedItem="{Binding SelectedMonth}"
+                                    ItemsSource="{Binding Months}"
                                 BackgroundColor="{DynamicResource Gray-White}"></Picker>
                         </border:SfBorder>
 
                     </Grid>
                     <!--Grid End-->
+                    
                     <border:SfBorder
                         BackgroundColor="{DynamicResource Gray-White}"                        
                         Style="{StaticResource SfBorderStyle}">
                         <Picker x:Name="catPicker" 
                             TitleColor="{DynamicResource Gray-94}"
                             TextColor="{DynamicResource Gray-56}"
-                            ItemDisplayBinding="{Binding Detail}" 
-                            SelectedItem="{Binding SelectedCategory}"
+                                ItemDisplayBinding="{Binding Detail}"
+                                SelectedItem="{Binding SelectedCategory}"
                             Title="Category"/>
                     </border:SfBorder>
 

@@ -32,11 +32,11 @@ namespace EBZ.Mobile.Views.Sales
                 await Navigation.PushAsync(scanPage);
             };
 
-            btnBegin.Clicked += async delegate
-            {                
-                Application.Current.Properties["transCustomer"] = "onifademola@gmail.com";
-                await navServ.NavigateAsync("SelectProductPage");
-            };
+            //btnBegin.Clicked += async delegate
+            //{                
+            //    Application.Current.Properties["transCustomer"] = "onifademola@gmail.com";
+            //    await navServ.NavigateAsync("SelectProductPage");
+            //};
         }
     }
 }

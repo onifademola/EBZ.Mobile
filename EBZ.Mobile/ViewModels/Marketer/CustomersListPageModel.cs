@@ -1,9 +1,12 @@
 ﻿using EBZ.Mobile.Extensions;
 using EBZ.Mobile.Models;
 using EBZ.Mobile.Services;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -21,7 +24,7 @@ namespace EBZ.Mobile.ViewModels.Marketer
         StorageService _storageService = new StorageService();
         private string username;
         public ObservableCollection<MarketerCustomer> _customers { get; set; }
-
+        string[] roles = null;
         #endregion
 
         #region Constructor
@@ -82,8 +85,31 @@ namespace EBZ.Mobile.ViewModels.Marketer
 
         #region Methods
 
+        private bool UserIsInRole(string roleName)
+        {
+            if (roles != null)
+            {
+                List<string> lst = roles.OfType<string>().ToList();
+                var check = lst.Contains(roleName);
+                if (check == true)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }
+        
         public void StartModel()
         {
+            //StorageService _storageService = new StorageService();
+            //Task.Run(async () => { roles = await _storageService.GetFromCache<string[]>("userRoles"); });
+            //if (UserIsInRole("Sales") == true)
+            //{
+            //    if (isCustomersEmpty())
+            //    {
+            //        LoadData();
+            //    }
+            //}            
             if (isCustomersEmpty())
             {
                 LoadData();
@@ -130,7 +156,7 @@ namespace EBZ.Mobile.ViewModels.Marketer
         private async void AddButtonClicked(object obj)
         {
             var navServ = App.ViewNavigationService;
-            await navServ.NavigateModalAsync("NewCustomerPage");
+            await navServ.NavigateAsync("NewCustomerPage");
         }
 
         private void BookmarkButtonClicked(object obj)

@@ -7,9 +7,6 @@ using Xamarin.Forms.Internals;
 
 namespace EBZ.Mobile.ViewModels.Marketer
 {
-    /// <summary>
-    /// ViewModel for sign-up page.
-    /// </summary>
     [Preserve(AllMembers = true)]
     public class NewCustomerPageModel : LoginViewModel
     {
@@ -21,9 +18,12 @@ namespace EBZ.Mobile.ViewModels.Marketer
         private string selectedDay;
         private string selectedMonth;
         private Category selectedCategory;
-        //public IList<Category> CategoryList;
-        
+        public List<Category> categoryList;
+        public List<string> days;
+        public List<string> months;        
         #endregion
+
+
         #region Constructor
         DateModel _dateModel = new DateModel();
         DialogService _dialogService = new DialogService();
@@ -36,7 +36,7 @@ namespace EBZ.Mobile.ViewModels.Marketer
         public NewCustomerPageModel()
         {            
             this.CreateCommand = new Command(this.CreateClicked);
-            //CategoryList = Task.Run(async () => await _customerDataService.GetCustomerCategories()).Result;
+            LoadControls();
         }
 
         #endregion
@@ -53,6 +53,34 @@ namespace EBZ.Mobile.ViewModels.Marketer
                     return;
                 }
                 this.selectedDay = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public List<string> Days
+        {
+            get { return this.days; }
+            set
+            {
+                if (this.days == value)
+                {
+                    return;
+                }
+                this.days = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public List<string> Months
+        {
+            get { return this.months; }
+            set
+            {
+                if (this.months == value)
+                {
+                    return;
+                }
+                this.months = value;
                 this.OnPropertyChanged();
             }
         }
@@ -84,6 +112,23 @@ namespace EBZ.Mobile.ViewModels.Marketer
                     return;
                 }
                 this.selectedCategory = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public List<Category> CategoryList
+        {
+            get
+            {
+                return this.categoryList;
+            }
+            set
+            {
+                if (this.categoryList == value)
+                {
+                    return;
+                }
+                this.categoryList = value;
                 this.OnPropertyChanged();
             }
         }
@@ -160,14 +205,21 @@ namespace EBZ.Mobile.ViewModels.Marketer
         #endregion
 
         #region Methods
+        private async void LoadControls()
+        {
+            days = _dateModel.DayPicker();
+            months = _dateModel.MonthPicker();
+            categoryList = await _customerDataService.GetCustomerCategories();
+            var ls = categoryList;
+        }
 
         private async void CreateClicked(object obj)
         {
-            if (Email.Equals(string.Empty) || Password.Equals(string.Empty) || Phone.Equals(string.Empty))
+            if (Email == null || SelectedDay == null || Phone == null || SelectedMonth == null || SelectedCategory == null)
             {
                 await _dialogService.ShowDialog(
-                        "This username/password/phone combination must be entered",
-                        "Signup Error",
+                        "All fields are required",
+                        "Account Create Error",
                         "OK");
             }
             else

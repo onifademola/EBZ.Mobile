@@ -5,21 +5,17 @@
                         xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
                         xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
                         Title="Scan screen" IsScanning="true">
-    <StackLayout>
-        <Button  Text="Scan a transaction">
-        </Button>
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
         <buttons:SfButton 
                               x:Name="buttonScanDefaultOverlay"
-                              Text="Scan a transaction"                              
-                              HeightRequest="40"
-                              WidthRequest="60"
+                              Text="Scan a transaction"
                               Margin="20,20,20,20"
                               BorderWidth="1"
                               CornerRadius="30"/>
-        <StackLayout Margin="25" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <!--<StackLayout Margin="25" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
             
             <Button x:Name="btnBegin" Text="Begin">
             </Button>
-        </StackLayout>
+        </StackLayout>-->
     </StackLayout>
 </zxing:ZXingScannerPage>
