@@ -104,7 +104,6 @@
                         Grid.Column="2"
                         Margin="8,0"
                         Padding="0"
-                        Command="{Binding SettingsCommand}"
                         HeightRequest="32"
                         Style="{StaticResource ProfileButtonStyle}"
                         Text="{StaticResource Edit}"
